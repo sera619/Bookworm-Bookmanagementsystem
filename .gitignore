@@ -1,0 +1,11 @@
+__pycache__
+.pytest_cache
+build
+dist
+env-buch
+scripts
+EXE-Compiler.exe
+Runner.exe
+test.py
+tests
+package
