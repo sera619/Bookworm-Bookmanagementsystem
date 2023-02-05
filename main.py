@@ -889,7 +889,6 @@ def load_booklist() -> list:
             new_list.append(new_book)
     return new_list
 
-
 def main(app: QApplication):
     global booklist
     booklist = load_booklist()

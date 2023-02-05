@@ -20,7 +20,7 @@
    <string>Form</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ressource.qrc">
+   <iconset resource="../ressource.qrc">
     <normaloff>:/icons/fonts/favicon.ico</normaloff>:/icons/fonts/favicon.ico</iconset>
   </property>
   <property name="styleSheet">
@@ -133,7 +133,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="ressource.qrc">:/icons/fonts/appicon128x128.png</pixmap>
+               <pixmap resource="../ressource.qrc">:/icons/fonts/appicon128x128.png</pixmap>
               </property>
               <property name="scaledContents">
                <bool>false</bool>
@@ -304,6 +304,7 @@ QPushButton::Pressed{
   </layout>
  </widget>
  <resources>
+  <include location="../ressource.qrc"/>
   <include location="ressource.qrc"/>
  </resources>
  <connections/>

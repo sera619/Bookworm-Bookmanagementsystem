@@ -18,6 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QFrame, QLabel, QProgressBar,
     QPushButton, QSizePolicy, QVBoxLayout, QWidget)
 import ressource_rc
+import ressource_rc
 
 class Ui_SplashScreen(object):
     def setupUi(self, SplashScreen):
