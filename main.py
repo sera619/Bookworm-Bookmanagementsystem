@@ -4,11 +4,9 @@ from PySide6.QtGui import *
 from PySide6.QtCore import *
 from PySide6.QtWidgets import *
 from PySide6 import *
-from interface import Ui_MainWindow
-from splash_ui import Ui_SplashScreen
+from res.ui_mainui import Ui_MainWindow
+from res.ui_splashui import Ui_SplashScreen
 from data import UserData
-from pathlib import Path
-import ressource_rc
 from qt_material import apply_stylesheet
 
 base_dir = os.path.dirname(__file__)
