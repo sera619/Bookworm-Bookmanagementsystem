@@ -11,19 +11,22 @@ class UserData:
         self.User = Query()
         if not self.user_exists("Max Mustermann"):
             self.add_test_data()
-        self.lastKdnNum = self.load_kndNum()
+        self.lastKdnNum = 0
+        self.load_kndNum()
 
     def load_kndNum(self) -> int:
-        with open(os.path.abspath(os.curdir)+'\\data\\kdn.txt', 'r') as f:
-            lastKdnNum = int(f.read())
-            return lastKdnNum
+        with open(os.path.abspath(os.curdir)+'\\data\\kdnb.bin', 'rb') as f:
+            num = int.from_bytes(f.read(), byteorder='big')
+            self.lastKdnNum = num
+            return num
 
     def save_kdnNum(self):
-        with open(os.path.abspath(os.curdir)+'\\data\\kdn.txt', 'w') as f:
-            f.write(str(self.lastKdnNum))
+        with open(os.path.abspath(os.curdir)+'\\data\\kdnb.bin', 'wb') as f:
+            f.write((self.lastKdnNum).to_bytes(24, byteorder='big', signed=False))
 
     def generate_kdnNum(self) -> int:
-        new_kdn = self.lastKdnNum + 1
+        new_kdn = self.load_kndNum()
+        new_kdn += 1 
         self.lastKdnNum = new_kdn
         self.save_kdnNum()
         return new_kdn
