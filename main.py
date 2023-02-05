@@ -208,7 +208,7 @@ class MainWindow(QMainWindow):
     def setup_buttons(self):
         self.ui.lendDayBox.currentTextChanged.connect(lambda: self.set_lenddate_label())
         self.ui.userTable.itemSelectionChanged.connect(lambda: self.show_user_information())
-
+        self.splash.splash.cancelBtn.clicked.connect(lambda: self.splash.splash.close())
         self.ui.x_button.clicked.connect(lambda: self.close())
         self.ui.min_window_btn.clicked.connect(lambda: self.showMinimized())
         self.ui.max_window_btn.clicked.connect(lambda: self.window_handler())
@@ -905,5 +905,8 @@ if __name__ == '__main__':
     try:
         main(app)
     except KeyboardInterrupt:
+        print("Key exit")
+    finally:
+        app.quit()
         sys.exit()
 
