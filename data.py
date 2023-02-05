@@ -133,20 +133,20 @@ class UserData:
     def backup_data(self):
         userdat = os.path.abspath(os.curdir)+'\\data\\userdata.json'
         userkey = os.path.abspath(os.curdir)+'\\data\\mo.key'
-        userknd = os.path.abspath(os.curdir)+'\\data\\kdn.txt'
+        userknd = os.path.abspath(os.curdir)+'\\data\\kdnb.bin'
         shutil.copy2(userdat, os.path.abspath(os.curdir)+'\\backup\\Backup-userdata.json')
         shutil.copy2(userkey, os.path.abspath(os.curdir)+'\\backup\\backup-mo.key')
-        shutil.copy2(userknd, os.path.abspath(os.curdir)+'\\backup\\backup-kdn.txt')
+        shutil.copy2(userknd, os.path.abspath(os.curdir)+'\\backup\\backup-kdnb.bin')
         print("Backup von Userdata erstellt!")
 
     def get_backup_data(self):
         userdat = os.path.abspath(os.curdir)+'\\data\\userdata.json'
         userkey = os.path.abspath(os.curdir)+'\\data\\mo.key'
-        userknd = os.path.abspath(os.curdir)+'\\data\\kdn.txt'
+        userknd = os.path.abspath(os.curdir)+'\\data\\kdnb.bin'
         os.remove(userdat)
         os.remove(userkey)
         os.remove(userknd)
         shutil.copy2(os.path.abspath(os.curdir)+'\\backup\\Backup-userdata.json', userdat)
         shutil.copy2(os.path.abspath(os.curdir)+'\\backup\\backup-mo.key', userkey)
-        shutil.copy2(os.path.abspath(os.curdir)+'\\backup\\backup-kdn.txt', userknd)
+        shutil.copy2(os.path.abspath(os.curdir)+'\\backup\\backup-kdnb.bin', userknd)
         print("Userdata wiederhergestellt!")
