@@ -937,9 +937,9 @@ def load_booklist() -> list:
     return new_list
 
 def main(app: QApplication, window: MainWindow):
-    #window.splash.show() 
-    #window.start_splash()
-    window.show()
+    window.splash.show() 
+    window.start_splash()
+    #window.show()
     sys.exit(app.exec())
 
 global booklist
