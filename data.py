@@ -13,7 +13,7 @@ class UserData:
         self.User = Query()
         if not self.user_exists("Max Mustermann"):
             self.add_test_data()
-        self.lastKdnNum = 0
+        self.lastKdnNum = 10
         self.load_kndNum()
 
     def load_kndNum(self) -> int:
@@ -182,7 +182,7 @@ def create_base_files() -> bool:
     if not os.path.exists(USERKND_F):
         print("Data: Erstelle neue Bücher-DB...")
         with open(USERKND_F, 'wb') as f:
-            f.write(b"")
+            f.write((10).to_bytes(24, byteorder='big', signed=False))
         print("Data: Neue KND-DB erstellt")
     return True
 

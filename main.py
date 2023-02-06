@@ -7,7 +7,7 @@ from PySide6 import *
 from res.ui_mainui import Ui_MainWindow
 from res.ui_splashui import Ui_SplashScreen
 from res.utils import *
-from data import UserData
+import data
 from qt_material import apply_stylesheet
 
 base_dir = os.path.dirname(__file__)
@@ -101,7 +101,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle(f'Bookworm {version_num}')
         self.setWindowIcon(QIcon(os.path.join(base_dir, 'appicon.ico')))
 
-        self.userdb = UserData()
+        self.userdb = data.UserData()
         self.splash = Splash()
         self.threadpool = QThreadPool()
         print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
@@ -126,7 +126,11 @@ class MainWindow(QMainWindow):
         self.setup_buttons()
         self.ui.version_label.setText(appversiontext)
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeView)
-        
+
+
+
+
+
     def set_date_text(self):
         datelabel = self.ui.currentDateLabel
         timelabel = self.ui.currentTimeLabel
