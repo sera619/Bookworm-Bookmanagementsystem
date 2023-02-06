@@ -1671,14 +1671,59 @@ class Ui_MainWindow(object):
         self.gridLayout_2 = QGridLayout(self.frame_13)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setHorizontalSpacing(20)
-        self.newuserMailInput = QLineEdit(self.frame_13)
-        self.newuserMailInput.setObjectName(u"newuserMailInput")
-        sizePolicy4.setHeightForWidth(self.newuserMailInput.sizePolicy().hasHeightForWidth())
-        self.newuserMailInput.setSizePolicy(sizePolicy4)
-        self.newuserMailInput.setFocusPolicy(Qt.ClickFocus)
-        self.newuserMailInput.setAlignment(Qt.AlignCenter)
+        self.newuserAdressInput = QLineEdit(self.frame_13)
+        self.newuserAdressInput.setObjectName(u"newuserAdressInput")
+        sizePolicy4.setHeightForWidth(self.newuserAdressInput.sizePolicy().hasHeightForWidth())
+        self.newuserAdressInput.setSizePolicy(sizePolicy4)
+        self.newuserAdressInput.setFocusPolicy(Qt.ClickFocus)
+        self.newuserAdressInput.setMaxLength(50)
+        self.newuserAdressInput.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_2.addWidget(self.newuserMailInput, 2, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.newuserAdressInput, 6, 1, 1, 1)
+
+        self.label_24 = QLabel(self.frame_13)
+        self.label_24.setObjectName(u"label_24")
+
+        self.gridLayout_2.addWidget(self.label_24, 7, 0, 1, 1, Qt.AlignHCenter)
+
+        self.label_17 = QLabel(self.frame_13)
+        self.label_17.setObjectName(u"label_17")
+        self.label_17.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_2.addWidget(self.label_17, 0, 0, 1, 1)
+
+        self.label_23 = QLabel(self.frame_13)
+        self.label_23.setObjectName(u"label_23")
+        self.label_23.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_2.addWidget(self.label_23, 6, 0, 1, 1)
+
+        self.label_21 = QLabel(self.frame_13)
+        self.label_21.setObjectName(u"label_21")
+        self.label_21.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_2.addWidget(self.label_21, 4, 0, 1, 1)
+
+        self.newuserLastNameInput = QLineEdit(self.frame_13)
+        self.newuserLastNameInput.setObjectName(u"newuserLastNameInput")
+        sizePolicy4.setHeightForWidth(self.newuserLastNameInput.sizePolicy().hasHeightForWidth())
+        self.newuserLastNameInput.setSizePolicy(sizePolicy4)
+        self.newuserLastNameInput.setFocusPolicy(Qt.ClickFocus)
+        self.newuserLastNameInput.setMaxLength(20)
+        self.newuserLastNameInput.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_2.addWidget(self.newuserLastNameInput, 1, 1, 1, 1)
+
+        self.newuserPhoneInput = QLineEdit(self.frame_13)
+        self.newuserPhoneInput.setObjectName(u"newuserPhoneInput")
+        sizePolicy4.setHeightForWidth(self.newuserPhoneInput.sizePolicy().hasHeightForWidth())
+        self.newuserPhoneInput.setSizePolicy(sizePolicy4)
+        self.newuserPhoneInput.setFocusPolicy(Qt.ClickFocus)
+        self.newuserPhoneInput.setInputMethodHints(Qt.ImhDigitsOnly)
+        self.newuserPhoneInput.setMaxLength(12)
+        self.newuserPhoneInput.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_2.addWidget(self.newuserPhoneInput, 4, 1, 1, 1)
 
         self.newuserKndNumInput = QLineEdit(self.frame_13)
         self.newuserKndNumInput.setObjectName(u"newuserKndNumInput")
@@ -1690,20 +1735,32 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.newuserKndNumInput, 0, 1, 1, 1)
 
-        self.newuserPhoneInput = QLineEdit(self.frame_13)
-        self.newuserPhoneInput.setObjectName(u"newuserPhoneInput")
-        sizePolicy4.setHeightForWidth(self.newuserPhoneInput.sizePolicy().hasHeightForWidth())
-        self.newuserPhoneInput.setSizePolicy(sizePolicy4)
-        self.newuserPhoneInput.setFocusPolicy(Qt.ClickFocus)
-        self.newuserPhoneInput.setAlignment(Qt.AlignCenter)
+        self.newuserNameInput = QLineEdit(self.frame_13)
+        self.newuserNameInput.setObjectName(u"newuserNameInput")
+        self.newuserNameInput.setFocusPolicy(Qt.ClickFocus)
+        self.newuserNameInput.setMaxLength(20)
+        self.newuserNameInput.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_2.addWidget(self.newuserPhoneInput, 3, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.newuserNameInput, 2, 1, 1, 1)
+
+        self.newuserBirthdayInput = QLineEdit(self.frame_13)
+        self.newuserBirthdayInput.setObjectName(u"newuserBirthdayInput")
+        self.newuserBirthdayInput.setFocusPolicy(Qt.ClickFocus)
+        self.newuserBirthdayInput.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_2.addWidget(self.newuserBirthdayInput, 7, 1, 1, 1)
 
         self.label_22 = QLabel(self.frame_13)
         self.label_22.setObjectName(u"label_22")
         self.label_22.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_2.addWidget(self.label_22, 4, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.label_22, 5, 0, 1, 1)
+
+        self.label_19 = QLabel(self.frame_13)
+        self.label_19.setObjectName(u"label_19")
+        self.label_19.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_2.addWidget(self.label_19, 3, 0, 1, 1)
 
         self.label_15 = QLabel(self.frame_13)
         self.label_15.setObjectName(u"label_15")
@@ -1711,68 +1768,31 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.label_15, 1, 0, 1, 1)
 
-        self.label_21 = QLabel(self.frame_13)
-        self.label_21.setObjectName(u"label_21")
-        self.label_21.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout_2.addWidget(self.label_21, 3, 0, 1, 1)
-
-        self.newuserNameInput = QLineEdit(self.frame_13)
-        self.newuserNameInput.setObjectName(u"newuserNameInput")
-        sizePolicy4.setHeightForWidth(self.newuserNameInput.sizePolicy().hasHeightForWidth())
-        self.newuserNameInput.setSizePolicy(sizePolicy4)
-        self.newuserNameInput.setFocusPolicy(Qt.ClickFocus)
-        self.newuserNameInput.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout_2.addWidget(self.newuserNameInput, 1, 1, 1, 1)
-
-        self.label_17 = QLabel(self.frame_13)
-        self.label_17.setObjectName(u"label_17")
-        self.label_17.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout_2.addWidget(self.label_17, 0, 0, 1, 1)
-
-        self.label_19 = QLabel(self.frame_13)
-        self.label_19.setObjectName(u"label_19")
-        self.label_19.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout_2.addWidget(self.label_19, 2, 0, 1, 1)
-
         self.newuserCityInput = QLineEdit(self.frame_13)
         self.newuserCityInput.setObjectName(u"newuserCityInput")
         sizePolicy4.setHeightForWidth(self.newuserCityInput.sizePolicy().hasHeightForWidth())
         self.newuserCityInput.setSizePolicy(sizePolicy4)
         self.newuserCityInput.setFocusPolicy(Qt.ClickFocus)
+        self.newuserCityInput.setMaxLength(30)
         self.newuserCityInput.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_2.addWidget(self.newuserCityInput, 4, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.newuserCityInput, 5, 1, 1, 1)
 
-        self.newuserAdressInput = QLineEdit(self.frame_13)
-        self.newuserAdressInput.setObjectName(u"newuserAdressInput")
-        sizePolicy4.setHeightForWidth(self.newuserAdressInput.sizePolicy().hasHeightForWidth())
-        self.newuserAdressInput.setSizePolicy(sizePolicy4)
-        self.newuserAdressInput.setFocusPolicy(Qt.ClickFocus)
-        self.newuserAdressInput.setAlignment(Qt.AlignCenter)
+        self.newuserMailInput = QLineEdit(self.frame_13)
+        self.newuserMailInput.setObjectName(u"newuserMailInput")
+        sizePolicy4.setHeightForWidth(self.newuserMailInput.sizePolicy().hasHeightForWidth())
+        self.newuserMailInput.setSizePolicy(sizePolicy4)
+        self.newuserMailInput.setFocusPolicy(Qt.ClickFocus)
+        self.newuserMailInput.setMaxLength(35)
+        self.newuserMailInput.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_2.addWidget(self.newuserAdressInput, 5, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.newuserMailInput, 3, 1, 1, 1)
 
-        self.label_23 = QLabel(self.frame_13)
-        self.label_23.setObjectName(u"label_23")
-        self.label_23.setAlignment(Qt.AlignCenter)
+        self.label_40 = QLabel(self.frame_13)
+        self.label_40.setObjectName(u"label_40")
+        self.label_40.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_2.addWidget(self.label_23, 5, 0, 1, 1)
-
-        self.label_24 = QLabel(self.frame_13)
-        self.label_24.setObjectName(u"label_24")
-
-        self.gridLayout_2.addWidget(self.label_24, 6, 0, 1, 1, Qt.AlignHCenter)
-
-        self.newuserBirthdayInput = QLineEdit(self.frame_13)
-        self.newuserBirthdayInput.setObjectName(u"newuserBirthdayInput")
-        self.newuserBirthdayInput.setFocusPolicy(Qt.ClickFocus)
-        self.newuserBirthdayInput.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout_2.addWidget(self.newuserBirthdayInput, 6, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.label_40, 2, 0, 1, 1)
 
 
         self.verticalLayout_32.addWidget(self.frame_13, 0, Qt.AlignHCenter)
@@ -2383,7 +2403,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(4)
         self.lendDayBox.setCurrentIndex(0)
         self.exportFileInputbox.setCurrentIndex(-1)
         self.exportFileTypeBox.setCurrentIndex(-1)
@@ -2508,20 +2528,22 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Verzug", None));
         self.userBookBackBtn.setText(QCoreApplication.translate("MainWindow", u"Zur\u00fcck", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"Neuer Nutzer", None))
-        self.newuserMailInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"example@examplemail.com", None))
-        self.newuserKndNumInput.setText(QCoreApplication.translate("MainWindow", u"wird automatisch generiert", None))
-        self.newuserPhoneInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"015187654321", None))
-        self.label_22.setText(QCoreApplication.translate("MainWindow", u"Wohnort", None))
-        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Name", None))
-        self.label_21.setText(QCoreApplication.translate("MainWindow", u"Telefon", None))
-        self.newuserNameInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Max Mustermann", None))
-        self.label_17.setText(QCoreApplication.translate("MainWindow", u"Knd-Nummer", None))
-        self.label_19.setText(QCoreApplication.translate("MainWindow", u"Mail", None))
-        self.newuserCityInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Berlin", None))
         self.newuserAdressInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Hauptstra\u00dfe 1", None))
-        self.label_23.setText(QCoreApplication.translate("MainWindow", u"Adresse", None))
         self.label_24.setText(QCoreApplication.translate("MainWindow", u"Geburtstag", None))
+        self.label_17.setText(QCoreApplication.translate("MainWindow", u"Knd-Nummer", None))
+        self.label_23.setText(QCoreApplication.translate("MainWindow", u"Adresse", None))
+        self.label_21.setText(QCoreApplication.translate("MainWindow", u"Telefon", None))
+        self.newuserLastNameInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Max", None))
+        self.newuserPhoneInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"015187654321", None))
+        self.newuserKndNumInput.setText(QCoreApplication.translate("MainWindow", u"wird automatisch generiert", None))
+        self.newuserNameInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Mustermann", None))
         self.newuserBirthdayInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"12.02.1990", None))
+        self.label_22.setText(QCoreApplication.translate("MainWindow", u"Wohnort", None))
+        self.label_19.setText(QCoreApplication.translate("MainWindow", u"Mail", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Name", None))
+        self.newuserCityInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Berlin", None))
+        self.newuserMailInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"example@examplemail.com", None))
+        self.label_40.setText(QCoreApplication.translate("MainWindow", u"Vorname", None))
         self.newuserCreateBtn.setText(QCoreApplication.translate("MainWindow", u"Erstellen", None))
         self.newuserClearBtn.setText(QCoreApplication.translate("MainWindow", u"Clear", None))
         self.label_35.setText(QCoreApplication.translate("MainWindow", u"Importieren / Exportieren", None))

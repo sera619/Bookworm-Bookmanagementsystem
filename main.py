@@ -6,11 +6,12 @@ from PySide6.QtWidgets import *
 from PySide6 import *
 from res.ui_mainui import Ui_MainWindow
 from res.ui_splashui import Ui_SplashScreen
+from res.utils import *
 from data import UserData
 from qt_material import apply_stylesheet
 
 base_dir = os.path.dirname(__file__)
-version_num = "2.8"
+version_num = "2.9.4"
 appversiontext = f"Version {version_num} | Copyright S3R43o3 © 2023"
 
 book = {
@@ -348,6 +349,7 @@ class MainWindow(QMainWindow):
         self.ui.newuserMailInput.clear()
         self.ui.newuserNameInput.clear()
         self.ui.newuserPhoneInput.clear()
+        self.ui.newuserLastNameInput.clear()
 
     def new_user(self):
         new_adress = self.ui.newuserAdressInput.text()
@@ -356,18 +358,50 @@ class MainWindow(QMainWindow):
         new_kndnum = str(self.userdb.generate_kdnNum())
         new_mail = self.ui.newuserMailInput.text()
         new_name = self.ui.newuserNameInput.text()
+        new_lastname = self.ui.newuserLastNameInput.text()
         new_phone = self.ui.newuserPhoneInput.text()
-        if new_mail == "" or new_adress == "" or new_birthday == "" or new_city == "" or new_kndnum == "" or new_name =="" or new_phone == "":
-            #print("enter all required fields")
-            return
+        
+        if new_mail == "" or new_adress == "" or new_birthday == "" or new_city == "" or new_kndnum == "" or new_name =="" or new_phone == "" or new_lastname == "":
+            button = QMessageBox.warning(
+                self,
+                'Information fehlt',
+                f'Bitte fülle alle vorhandenen Felder aus!\n',
+                QMessageBox.StandardButton.Ok
+            )
+            if button == QMessageBox.StandardButton.Ok:
+                return
+
+        if not is_mail_valid(new_mail):
+            button = QMessageBox.warning(
+                self,
+                'E-Mail nicht gefunden',
+                f'Bitte gebe eine korrekte E-Mail Addresse ein!\n\nBsp.: beispielmail@beispiel.com',
+                QMessageBox.StandardButton.Ok
+            )
+            if button == QMessageBox.StandardButton.Ok:
+                self.ui.newuserMailInput.setText("")
+                return
+        
+        if not is_birthday_valid(new_birthday):
+            button = QMessageBox.warning(
+                self,
+                'Geburtsdatum nicht korrekt',
+                f'Das Geburtsdatum ist nicht korrekt!\n\nBitte verwende gebe das Geburtsdatum ein!\n\nBsp.: 22.05.2002',
+                QMessageBox.StandardButton.Ok
+            )
+            if button == QMessageBox.StandardButton.Ok:
+                self.ui.newuserBirthdayInput.setText("")
+                return
+
+        new_fullname = f"{new_name.capitalize()} {new_lastname.capitalize()}"
         button = QMessageBox.information(
             self,
             'Neuer Nutzer',
-            f'Neuer Nutzer\n"{new_name}"\nwurde erstellt!',
+            f'Neuer Nutzer\n"{new_fullname}"\nwurde erstellt!',
             QMessageBox.StandardButton.Ok
         )
         if button == QMessageBox.StandardButton.Ok:
-            self.userdb.add_user(new_kndnum, new_name.capitalize(), new_mail, new_phone, new_city, new_adress, new_birthday, [])
+            self.userdb.add_user(new_kndnum, new_fullname, new_mail, new_phone, new_city, new_adress, new_birthday, [])
             self.clear_newuser_input()
             self.load_user_list()
             self.ui.stackedWidget.setCurrentWidget(self.ui.userlistView)
@@ -384,16 +418,18 @@ class MainWindow(QMainWindow):
         
         for r in rows:
             name = self.ui.userTable.item(r, 1).text()
+            last_name = self.ui.userTable.item(r, 2).text()
         
+        full_name = f"{name} {last_name}"
         button = QMessageBox.question(
             self,
             'Nutzer löschen?',
-            f'Möchstest du den Benutzer\n"{name}"\nwirklich löschen?',
+            f'Möchstest du den Benutzer\n"{full_name}"\nwirklich löschen?',
             QMessageBox.StandardButton.Yes |
             QMessageBox.StandardButton.No
         )
         if button == QMessageBox.StandardButton.Yes:
-            self.userdb.remove_user(name)
+            self.userdb.remove_user(full_name)
             self.clear_userinformation()
             self.load_user_list()
         else:

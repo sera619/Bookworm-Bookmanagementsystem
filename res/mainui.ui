@@ -500,7 +500,7 @@ QPushButton::Focus{
              </sizepolicy>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>4</number>
             </property>
             <widget class="QWidget" name="homeView">
              <property name="sizePolicy">
@@ -2995,8 +2995,8 @@ QPushButton::Pressed{
                     <property name="horizontalSpacing">
                      <number>20</number>
                     </property>
-                    <item row="2" column="1">
-                     <widget class="QLineEdit" name="newuserMailInput">
+                    <item row="6" column="1">
+                     <widget class="QLineEdit" name="newuserAdressInput">
                       <property name="sizePolicy">
                        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                         <horstretch>0</horstretch>
@@ -3006,11 +3006,98 @@ QPushButton::Pressed{
                       <property name="focusPolicy">
                        <enum>Qt::ClickFocus</enum>
                       </property>
+                      <property name="maxLength">
+                       <number>50</number>
+                      </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
                       </property>
                       <property name="placeholderText">
-                       <string>example@examplemail.com</string>
+                       <string>Hauptstraße 1</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="7" column="0" alignment="Qt::AlignHCenter">
+                     <widget class="QLabel" name="label_24">
+                      <property name="text">
+                       <string>Geburtstag</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="label_17">
+                      <property name="text">
+                       <string>Knd-Nummer</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="6" column="0">
+                     <widget class="QLabel" name="label_23">
+                      <property name="text">
+                       <string>Adresse</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="0">
+                     <widget class="QLabel" name="label_21">
+                      <property name="text">
+                       <string>Telefon</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QLineEdit" name="newuserLastNameInput">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="focusPolicy">
+                       <enum>Qt::ClickFocus</enum>
+                      </property>
+                      <property name="maxLength">
+                       <number>20</number>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Max</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="1">
+                     <widget class="QLineEdit" name="newuserPhoneInput">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="focusPolicy">
+                       <enum>Qt::ClickFocus</enum>
+                      </property>
+                      <property name="inputMethodHints">
+                       <set>Qt::ImhDigitsOnly</set>
+                      </property>
+                      <property name="maxLength">
+                       <number>12</number>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                      <property name="placeholderText">
+                       <string>015187654321</string>
                       </property>
                      </widget>
                     </item>
@@ -3036,14 +3123,24 @@ QPushButton::Pressed{
                       </property>
                      </widget>
                     </item>
-                    <item row="3" column="1">
-                     <widget class="QLineEdit" name="newuserPhoneInput">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
+                    <item row="2" column="1">
+                     <widget class="QLineEdit" name="newuserNameInput">
+                      <property name="focusPolicy">
+                       <enum>Qt::ClickFocus</enum>
                       </property>
+                      <property name="maxLength">
+                       <number>20</number>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Mustermann</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="7" column="1">
+                     <widget class="QLineEdit" name="newuserBirthdayInput">
                       <property name="focusPolicy">
                        <enum>Qt::ClickFocus</enum>
                       </property>
@@ -3051,14 +3148,24 @@ QPushButton::Pressed{
                        <set>Qt::AlignCenter</set>
                       </property>
                       <property name="placeholderText">
-                       <string>015187654321</string>
+                       <string>12.02.1990</string>
                       </property>
                      </widget>
                     </item>
-                    <item row="4" column="0">
+                    <item row="5" column="0">
                      <widget class="QLabel" name="label_22">
                       <property name="text">
                        <string>Wohnort</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="0">
+                     <widget class="QLabel" name="label_19">
+                      <property name="text">
+                       <string>Mail</string>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -3075,56 +3182,7 @@ QPushButton::Pressed{
                       </property>
                      </widget>
                     </item>
-                    <item row="3" column="0">
-                     <widget class="QLabel" name="label_21">
-                      <property name="text">
-                       <string>Telefon</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="1">
-                     <widget class="QLineEdit" name="newuserNameInput">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="focusPolicy">
-                       <enum>Qt::ClickFocus</enum>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Max Mustermann</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="0">
-                     <widget class="QLabel" name="label_17">
-                      <property name="text">
-                       <string>Knd-Nummer</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="0">
-                     <widget class="QLabel" name="label_19">
-                      <property name="text">
-                       <string>Mail</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="1">
+                    <item row="5" column="1">
                      <widget class="QLineEdit" name="newuserCityInput">
                       <property name="sizePolicy">
                        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -3135,6 +3193,9 @@ QPushButton::Pressed{
                       <property name="focusPolicy">
                        <enum>Qt::ClickFocus</enum>
                       </property>
+                      <property name="maxLength">
+                       <number>30</number>
+                      </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
                       </property>
@@ -3143,8 +3204,8 @@ QPushButton::Pressed{
                       </property>
                      </widget>
                     </item>
-                    <item row="5" column="1">
-                     <widget class="QLineEdit" name="newuserAdressInput">
+                    <item row="3" column="1">
+                     <widget class="QLineEdit" name="newuserMailInput">
                       <property name="sizePolicy">
                        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                         <horstretch>0</horstretch>
@@ -3154,41 +3215,24 @@ QPushButton::Pressed{
                       <property name="focusPolicy">
                        <enum>Qt::ClickFocus</enum>
                       </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Hauptstraße 1</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="5" column="0">
-                     <widget class="QLabel" name="label_23">
-                      <property name="text">
-                       <string>Adresse</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="6" column="0" alignment="Qt::AlignHCenter">
-                     <widget class="QLabel" name="label_24">
-                      <property name="text">
-                       <string>Geburtstag</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="6" column="1">
-                     <widget class="QLineEdit" name="newuserBirthdayInput">
-                      <property name="focusPolicy">
-                       <enum>Qt::ClickFocus</enum>
+                      <property name="maxLength">
+                       <number>35</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
                       </property>
                       <property name="placeholderText">
-                       <string>12.02.1990</string>
+                       <string>example@examplemail.com</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QLabel" name="label_40">
+                      <property name="text">
+                       <string>Vorname</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
                       </property>
                      </widget>
                     </item>
@@ -4320,7 +4364,7 @@ QPushButton::Pressed{
  </widget>
  <resources>
   <include location="../ressource.qrc"/>
-  <include location="ressource.qrc"/>
+  <include location="../ressource.qrc"/>
  </resources>
  <connections/>
 </ui>
