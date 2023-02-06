@@ -3,8 +3,10 @@ from cryptography.fernet import Fernet
 import os, shutil
 
 base_dir = os.path.dirname(__file__)
-
-
+USERDATA_F = os.path.abspath(os.curdir)+'\\data\\userdata.json'
+USERKND_F = os.path.abspath(os.curdir)+'\\data\\kdnb.bin'
+USERDATA_F_B = os.path.abspath(os.curdir)+'\\backup\\Backup-userdata.json'
+USERKND_F_B = os.path.abspath(os.curdir)+'\\backup\\Backup-kdnb.bin'
 class UserData:
     def __init__(self):
         self.db = TinyDB(os.path.abspath(os.curdir)+'\\data\\userdata.json')
@@ -130,23 +132,58 @@ class UserData:
         with open(path, 'wb') as org_file:
             org_file.write(original)
 
-    def backup_data(self):
-        userdat = os.path.abspath(os.curdir)+'\\data\\userdata.json'
-        userkey = os.path.abspath(os.curdir)+'\\data\\mo.key'
-        userknd = os.path.abspath(os.curdir)+'\\data\\kdnb.bin'
-        shutil.copy2(userdat, os.path.abspath(os.curdir)+'\\backup\\Backup-userdata.json')
-        shutil.copy2(userkey, os.path.abspath(os.curdir)+'\\backup\\backup-mo.key')
-        shutil.copy2(userknd, os.path.abspath(os.curdir)+'\\backup\\backup-kdnb.bin')
-        print("Backup von Userdata erstellt!")
+def backup_data() -> bool:
+    if os.path.exists(USERDATA_F) and os.path.exists(USERKND_F):
+        remove_backup_data()
+        shutil.copy2(USERDATA_F, USERDATA_F_B)
+        shutil.copy2(USERKND_F, USERKND_F_B)
+        print("Data: Backup von Userdata erstellt!")
+        return True
+    return False
 
-    def get_backup_data(self):
-        userdat = os.path.abspath(os.curdir)+'\\data\\userdata.json'
-        userkey = os.path.abspath(os.curdir)+'\\data\\mo.key'
-        userknd = os.path.abspath(os.curdir)+'\\data\\kdnb.bin'
-        os.remove(userdat)
-        os.remove(userkey)
-        os.remove(userknd)
-        shutil.copy2(os.path.abspath(os.curdir)+'\\backup\\Backup-userdata.json', userdat)
-        shutil.copy2(os.path.abspath(os.curdir)+'\\backup\\backup-mo.key', userkey)
-        shutil.copy2(os.path.abspath(os.curdir)+'\\backup\\backup-kdnb.bin', userknd)
-        print("Userdata wiederhergestellt!")
+def get_backup_data() -> bool:
+    remove_data()
+    if os.path.exists(USERDATA_F_B) and os.path.exists(USERKND_F_B):
+        shutil.copy2(USERDATA_F_B, USERDATA_F)
+        shutil.copy2(USERKND_F_B, USERKND_F)
+        print("Data: Userdata wiederhergestellt!")
+        return True
+    return False
+
+def remove_backup_data() -> bool:
+    if os.path.exists(USERDATA_F_B) and os.path.exists(USERKND_F_B):
+        os.remove(USERDATA_F_B)
+        os.remove(USERKND_F_B)
+        print("Data: Backupdaten gelöscht!")
+        return True
+    print("Data: Kein Backup gefunden!")
+    return False
+
+def remove_data() -> bool:
+    if os.path.exists(USERDATA_F) and os.path.exists(USERKND_F):
+        os.remove(USERDATA_F)
+        os.remove(USERKND_F)
+        print("Data: User-DB und KND-DB gelöscht!")
+        return True
+    print("Data: Keine User-DB und KND-DB gefunden!")
+    return False    
+
+
+def create_base_files() -> bool:
+    if os.path.exists(USERDATA_F) or os.path.exists(USERKND_F):
+        print("Data: Zuerst User-DB UND KND-DB löschen!")
+        return False
+    if not os.path.exists(USERDATA_F):
+        print("Data: Erstelle neue User-DB...")
+        with open(USERDATA_F, 'w') as f:
+            f.write("")
+        print("Data: Neue User-DB erstellt!")
+    
+    if not os.path.exists(USERKND_F):
+        print("Data: Erstelle neue Bücher-DB...")
+        with open(USERKND_F, 'wb') as f:
+            f.write(b"")
+        print("Data: Neue KND-DB erstellt")
+    return True
+
+
