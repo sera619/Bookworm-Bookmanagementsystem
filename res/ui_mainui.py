@@ -1720,7 +1720,7 @@ class Ui_MainWindow(object):
         self.newuserPhoneInput.setSizePolicy(sizePolicy4)
         self.newuserPhoneInput.setFocusPolicy(Qt.ClickFocus)
         self.newuserPhoneInput.setInputMethodHints(Qt.ImhDigitsOnly)
-        self.newuserPhoneInput.setMaxLength(12)
+        self.newuserPhoneInput.setMaxLength(15)
         self.newuserPhoneInput.setAlignment(Qt.AlignCenter)
 
         self.gridLayout_2.addWidget(self.newuserPhoneInput, 4, 1, 1, 1)
@@ -2403,7 +2403,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(4)
+        self.stackedWidget.setCurrentIndex(7)
         self.lendDayBox.setCurrentIndex(0)
         self.exportFileInputbox.setCurrentIndex(-1)
         self.exportFileTypeBox.setCurrentIndex(-1)
@@ -2535,7 +2535,7 @@ class Ui_MainWindow(object):
         self.label_21.setText(QCoreApplication.translate("MainWindow", u"Telefon", None))
         self.newuserLastNameInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Max", None))
         self.newuserPhoneInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"015187654321", None))
-        self.newuserKndNumInput.setText(QCoreApplication.translate("MainWindow", u"wird automatisch generiert", None))
+        self.newuserKndNumInput.setText(QCoreApplication.translate("MainWindow", u" > Wird automatisch generiert.", None))
         self.newuserNameInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Mustermann", None))
         self.newuserBirthdayInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"12.02.1990", None))
         self.label_22.setText(QCoreApplication.translate("MainWindow", u"Wohnort", None))

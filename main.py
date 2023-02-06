@@ -84,7 +84,7 @@ class Splash(QWidget):
         self.timer = QTimer()
         self.progressBar = self.splash.loadProgress
         self.cancelBTN = self.splash.cancelBtn
-        self.splash.cancelBtn.clicked.connect(lambda: app.quit())
+        #self.splash.cancelBtn.clicked.connect(lambda: self.close())
 
     def update_bartext(self):
         self.splash.label_2.setText("loading... " + str(self.splash.loadProgress.value()) + "%")
@@ -100,6 +100,7 @@ class MainWindow(QMainWindow):
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setWindowTitle(f'Bookworm {version_num}')
         self.setWindowIcon(QIcon(os.path.join(base_dir, 'appicon.ico')))
+
 
         self.userdb = data.UserData()
         self.splash = Splash()
@@ -126,10 +127,6 @@ class MainWindow(QMainWindow):
         self.setup_buttons()
         self.ui.version_label.setText(appversiontext)
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeView)
-
-
-
-
 
     def set_date_text(self):
         datelabel = self.ui.currentDateLabel
@@ -159,6 +156,7 @@ class MainWindow(QMainWindow):
         self.splash.close()
         self.show()
         self.menuAnim()
+        self.activeworkder = None
         print("Thread finished")
 
     def start_splash(self):
@@ -166,7 +164,7 @@ class MainWindow(QMainWindow):
         worker.signals.result.connect(self.output_worker)
         worker.signals.finished.connect(self.thread_complete)
         worker.signals.progress.connect(self.progress_fn)
-
+        self.activeworkder = worker
         self.threadpool.start(worker)
 
     def apply_styles(self):
@@ -210,10 +208,14 @@ class MainWindow(QMainWindow):
         self.ui.usergbLabel.setStyleSheet("color: 'red'; font-weight: 300; font-size: 12pt;")
         self.ui.userphoneLabel.setStyleSheet("color: 'red'; font-weight: 300; font-size: 12pt;")
 
+    def close_splash(self):
+        self.splash.timer.stop()
+        self.splash.close()
+
     def setup_buttons(self):
         self.ui.lendDayBox.currentTextChanged.connect(lambda: self.set_lenddate_label())
         self.ui.userTable.itemSelectionChanged.connect(lambda: self.show_user_information())
-        self.splash.splash.cancelBtn.clicked.connect(lambda: self.splash.splash.close())
+        self.splash.splash.cancelBtn.clicked.connect(lambda: self.close_splash())
         self.ui.x_button.clicked.connect(lambda: self.close())
         self.ui.min_window_btn.clicked.connect(lambda: self.showMinimized())
         self.ui.max_window_btn.clicked.connect(lambda: self.window_handler())
@@ -235,10 +237,10 @@ class MainWindow(QMainWindow):
         self.ui.menu_btn_backup.clicked.connect(lambda: self.menuAnim())
         self.ui.menu_btn_help.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.helpView))
         self.ui.menu_btn_help.clicked.connect(lambda: self.menuAnim())
-        self.ui.menu_btn_help.setEnabled(False)
+        #self.ui.menu_btn_help.setEnabled(False)
 
         self.ui.userBookBackBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.userlistView))
-        self.ui.newUserBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.newUserView))
+        self.ui.newUserBtn.clicked.connect(lambda: self.show_newuser_view())
         self.ui.index_btn_add.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.addBookView))
         
         self.ui.clearAddInputBtn.clicked.connect(lambda: self.clear_add_book_input())
@@ -355,17 +357,20 @@ class MainWindow(QMainWindow):
         self.ui.newuserPhoneInput.clear()
         self.ui.newuserLastNameInput.clear()
 
+    def show_newuser_view(self):
+        self.ui.newuserKndNumInput.setText(f"  ( {str(self.userdb.lastKdnNum + 1)} )" + self.ui.newuserKndNumInput.text()  )
+        self.ui.stackedWidget.setCurrentWidget(self.ui.newUserView)
+
     def new_user(self):
         new_adress = self.ui.newuserAdressInput.text()
         new_birthday = self.ui.newuserBirthdayInput.text()
         new_city =self.ui.newuserCityInput.text()
-        new_kndnum = str(self.userdb.generate_kdnNum())
         new_mail = self.ui.newuserMailInput.text()
         new_name = self.ui.newuserNameInput.text()
         new_lastname = self.ui.newuserLastNameInput.text()
         new_phone = self.ui.newuserPhoneInput.text()
         
-        if new_mail == "" or new_adress == "" or new_birthday == "" or new_city == "" or new_kndnum == "" or new_name =="" or new_phone == "" or new_lastname == "":
+        if new_mail == "" or new_adress == "" or new_birthday == "" or new_city == ""  or new_name =="" or new_phone == "" or new_lastname == "":
             button = QMessageBox.warning(
                 self,
                 'Information fehlt',
@@ -405,6 +410,8 @@ class MainWindow(QMainWindow):
             QMessageBox.StandardButton.Ok
         )
         if button == QMessageBox.StandardButton.Ok:
+            new_kndnum = str(self.userdb.generate_kdnNum())
+        
             self.userdb.add_user(new_kndnum, new_fullname, new_mail, new_phone, new_city, new_adress, new_birthday, [])
             self.clear_newuser_input()
             self.load_user_list()
@@ -929,24 +936,28 @@ def load_booklist() -> list:
             new_list.append(new_book)
     return new_list
 
-def main(app: QApplication):
-    global booklist
-    booklist = load_booklist()
-    window = MainWindow()
-    window.splash.show() 
-    window.start_splash()
-    #window.show()
+def main(app: QApplication, window: MainWindow):
+    #window.splash.show() 
+    #window.start_splash()
+    window.show()
     sys.exit(app.exec())
+
+global booklist
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon(os.path.join(base_dir, 'appicon.ico')))
+    booklist = load_booklist()
+    window = MainWindow()
 
     try:
-        main(app)
+        main(app, window)
     except KeyboardInterrupt:
         print("Key exit")
+    except:
+        print("Anderer fehler: \n")
     finally:
+
         app.quit()
         sys.exit()
 

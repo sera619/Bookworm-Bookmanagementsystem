@@ -500,7 +500,7 @@ QPushButton::Focus{
              </sizepolicy>
             </property>
             <property name="currentIndex">
-             <number>4</number>
+             <number>7</number>
             </property>
             <widget class="QWidget" name="homeView">
              <property name="sizePolicy">
@@ -3091,7 +3091,7 @@ QPushButton::Pressed{
                        <set>Qt::ImhDigitsOnly</set>
                       </property>
                       <property name="maxLength">
-                       <number>12</number>
+                       <number>15</number>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -3113,7 +3113,7 @@ QPushButton::Pressed{
                        <enum>Qt::ClickFocus</enum>
                       </property>
                       <property name="text">
-                       <string>wird automatisch generiert</string>
+                       <string> &gt; Wird automatisch generiert.</string>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
