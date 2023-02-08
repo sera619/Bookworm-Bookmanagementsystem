@@ -2,7 +2,7 @@ altgraph==0.17.3
 attrs==22.2.0
 cffi==1.15.1
 colorama==0.4.6
-cryptography==39.0.0
+cryptography==39.0.1
 future==0.18.3
 iniconfig==2.0.0
 Jinja2==3.1.2
