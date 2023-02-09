@@ -12,6 +12,7 @@ build:
 	pyside6-uic .\res\splashui.ui > .\res\ui_splashui.py
 	pyside6-rcc ressource.qrc > ressource_rc.py
 	pyinstaller .\config\main.spec --noconfirm
+	C:\Program Files (x86)\solicus\InstallForge\bin\ifbuilderenvx86.exe
 
 clean:
 	if exist "./build" rd /s /q build
