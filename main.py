@@ -8,6 +8,7 @@ from res.ui_mainui import Ui_MainWindow
 from res.ui_splashui import Ui_SplashScreen
 from res.utils import *
 import data
+import codecs
 from qt_material import apply_stylesheet
 
 base_dir = os.path.dirname(__file__)
@@ -115,9 +116,9 @@ class MainWindow(QMainWindow):
         self.world_timer.start()
 
         self.ui.topFrame.mouseMoveEvent = moveWindow
+        self.load_user_list()
         self.load_book_list()
         self.load_available_list()
-        self.load_user_list()
         self.apply_styles()
         self.setup_buttons()
         self.ui.version_label.setText(appversiontext)
@@ -407,7 +408,6 @@ class MainWindow(QMainWindow):
         )
         if button == QMessageBox.StandardButton.Ok:
             new_kndnum = str(self.userdb.generate_kdnNum())
-        
             self.userdb.add_user(new_kndnum, new_fullname, new_mail, new_phone, new_city, new_adress, new_birthday, [])
             self.clear_newuser_input()
             self.load_user_list()

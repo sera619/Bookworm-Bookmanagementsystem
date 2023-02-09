@@ -21,3 +21,4 @@ clean:
 	if exist "./tests/__pycache__" rd /s /q .\tests\__pycache__
 	if exist "__pycache__" rd /s /q .\__pycache__
 	if exist ".pytest_cache" rd /s /q .pytest_cache
+	if exist "./data/mo.key" del /s /q .\data\mo.key

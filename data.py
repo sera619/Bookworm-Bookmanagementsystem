@@ -15,10 +15,10 @@ class UserData:
     def __init__(self):
         self.db = TinyDB(os.path.abspath(os.curdir)+'\\data\\userdata.json')
         self.User = Query()
-        if not self.user_exists("Max Mustermann"):
-            self.add_test_data()
         self.lastKdnNum = 10
         self.load_kndNum()
+        if not self.user_exists("Max Mustermann"):
+            self.add_test_data()
 
     def load_kndNum(self) -> int:
         with open(os.path.abspath(os.curdir)+'\\data\\kdnb.bin', 'rb') as f:
@@ -38,7 +38,7 @@ class UserData:
         return new_kdn
 
     def add_test_data(self):
-        self.add_user("1", "Max Mustermann", "muster@mustermail.de", "01519876543", "Musterhausen", "Musterstraße 666", "11.11.2011",[])
+        self.add_user("1", "Max Mustermann", "muster@mustermail.de" , "01519876543", "Musterhausen", "Musterstraße 666", "11.11.2011",[])
         self.add_user("2", "Maxi Mustermann", "musterine@mustermail.de", "01519876544", "Musterhausen", "Musterstraße 666", "6.6.1966",[])
 
     def add_user(self, kndNum, name, email, phone, city, address, birthday, books) -> bool:
@@ -98,99 +98,47 @@ class UserData:
         for user in self.db:
             if user['kndNum'] == knd:
                 return user['name']
-                  
-    #Encryption
-    def generate_key(self):
-        if os.path.exists(os.path.abspath(os.curdir)+'\\data\\mo.key'):
-            return
-        key = Fernet.generate_key()
-        with open(os.path.abspath(os.curdir)+'\\data\\mo.key', 'wb') as k:
-            k.write(key)
-        print("Data: Neuer Cryptkey erstellt")
-    
-    def load_key(self):
-        key = None
-        if not os.path.exists(os.path.abspath(os.curdir)+'\\data\\mo.key'):
-            self.generate_key()
-        with open(os.path.abspath(os.curdir)+'\\data\\mo.key', 'rb') as k:
-            key = k.read()
-        print("Data: Cryptkey geladen")
-        return key
 
-    def encrypt_file(self):
-        path = os.path.abspath(os.curdir)+'\\data\\booklist.csv'
-        crypt_path = os.path.abspath(os.curdir)+'\\data\\cbooklist-byte.csv'
-        k = Fernet(self.load_key())
-        with open(path, 'rb') as org_file:
-            original = org_file.read()
-        encrypt = k.encrypt(original)
-        print(encrypt)
-        with open(crypt_path, 'wb') as crypt_file:
-            crypt_file.write(encrypt)
-    
-    def decrypt_file(self):
-        path = os.path.abspath(os.curdir)+'\\data\\booklist.csv'
-        crypt_path = os.path.abspath(os.curdir)+'\\data\\cbooklist-byte.csv'
-        k = Fernet(self.load_key())
-
-        with open(crypt_path, 'rb') as crypt_file:
-            encrypt = crypt_file.read()
-        
-        original = k.decrypt(encrypt)
-        print(original)
-
-        with open(path, 'wb') as org_file:
-            org_file.write(original)
-
-    def encrypt_string(self, text: str) -> bytes:
-        k = Fernet(self.load_key())
-        print("Data: String encrypted.")
-        return k.encrypt(text.encode())
-    
-    def decrypt_string(self, text: bytes) -> str:
-        k = Fernet(self.load_key())
-        print("Data: String decrypted")
-        return k.decrypt(text).decode()
-
-
-
-def backup_data() -> bool:
-    if os.path.exists(USERDATA_F) and os.path.exists(USERKND_F):
-        remove_backup_data()
+def backup_data():
+    remove_backup_data()
+    if os.path.exists(USERDATA_F):
         shutil.copy2(USERDATA_F, USERDATA_F_B)
+    if os.path.exists(USERKND_F):
         shutil.copy2(USERKND_F, USERKND_F_B)
-        print("Data: Backup von Userdata erstellt!")
-        return True
-    return False
+        # shutil.copy2(DKEY_F, DKEY_F_B)
 
-def get_backup_data() -> bool:
+def get_backup_data():
     remove_data()
     if os.path.exists(USERDATA_F_B) and os.path.exists(USERKND_F_B):
         shutil.copy2(USERDATA_F_B, USERDATA_F)
         shutil.copy2(USERKND_F_B, USERKND_F)
+        # shutil.copy2(DKEY_F_B, DKEY_F)
         print("Data: Userdata wiederhergestellt!")
-        return True
-    return False
 
-def remove_backup_data() -> bool:
-    if os.path.exists(USERDATA_F_B) and os.path.exists(USERKND_F_B):
+
+def remove_backup_data():
+    if os.path.exists(USERDATA_F_B):
         os.remove(USERDATA_F_B)
+        print("Data: Backup Userdata gelöscht!")
+    if os.path.exists(USERKND_F_B):
         os.remove(USERKND_F_B)
-        print("Data: Backupdaten gelöscht!")
-        return True
-    print("Data: Kein Backup gefunden!")
-    return False
+        # os.remove(DKEY_F_B)
+        print("Data: Backup KND gelöscht!")
 
-def remove_data() -> bool:
-    if os.path.exists(USERDATA_F) and os.path.exists(USERKND_F):
+
+def remove_data():
+    if os.path.exists(USERDATA_F):
         os.remove(USERDATA_F)
+        print("Data: User-DB gelöscht!")
+    if os.path.exists(USERKND_F):
         os.remove(USERKND_F)
-        print("Data: User-DB und KND-DB gelöscht!")
-        return True
-    print("Data: Keine User-DB und KND-DB gefunden!")
-    return False    
+        print("Data: KND-DB gelöscht!")
+        # os.remove(DKEY_F)
 
-def create_base_files() -> bool:
+
+  
+
+def create_base_files():
     if os.path.exists(USERDATA_F) or os.path.exists(USERKND_F):
         print("Data: Zuerst User-DB UND KND-DB löschen!")
         return False
