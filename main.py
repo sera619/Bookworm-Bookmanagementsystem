@@ -11,7 +11,7 @@ import data
 from qt_material import apply_stylesheet
 
 base_dir = os.path.dirname(__file__)
-version_num = "2.9.4"
+version_num = "3.0.2"
 appversiontext = f"Version {version_num} | Copyright S3R43o3 © 2023"
 
 book = {
@@ -73,7 +73,6 @@ class Splash(QWidget):
         self.shadow1.setYOffset(0)
         self.shadow2.setXOffset(0)
         self.shadow2.setYOffset(0)
-        
         self.splash.iconLabel.setGraphicsEffect(self.shadow1)
         self.splash.headerLabel.setGraphicsEffect(self.shadow2)
         self.splash.loadProgress.setValue(0)
@@ -93,20 +92,16 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
-
         self.ui.setupUi(self)
         apply_stylesheet(app, theme='dark_red.xml')
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setWindowTitle(f'Bookworm {version_num}')
         self.setWindowIcon(QIcon(os.path.join(base_dir, 'appicon.ico')))
-
-
         self.userdb = data.UserData()
         self.splash = Splash()
         self.threadpool = QThreadPool()
         print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
-
         def moveWindow(e):
             if self.isMaximized() == False: 
                 if e.buttons() == Qt.LeftButton:
@@ -259,8 +254,9 @@ class MainWindow(QMainWindow):
         self.ui.importDataBtn.clicked.connect(lambda: self.import_data_file())
         self.ui.exportDataBtn.clicked.connect(lambda: self.export_data_file())
         self.ui.importSearchFileBtn.clicked.connect(lambda: self.get_import_data())
-#        self.ui.loadBackupBtn.clicked.connect(lambda: self.get_backup_data())
-        self.ui.loadBackupBtn.setEnabled(False)
+        self.ui.loadBackupBtn.clicked.connect(lambda: self.get_backup_data())
+        #self.ui.loadBackupBtn.setEnabled(False)
+
         self.ui.socialGitBtn.clicked.connect(lambda: webbrowser.open("https://github.com/sera619"))
 
     def window_handler(self):
@@ -462,11 +458,9 @@ class MainWindow(QMainWindow):
         row = self.ui.userTable.selectedIndexes()
         #print(row)
         if row:
-
             rows = set(i.row() for i in row)
         else:
             rows = [self.ui.indexTable.rowCount() -1]
-
         name = ""
         for r in rows:
             name = self.ui.userTable.item(r, 1).text()
@@ -485,6 +479,7 @@ class MainWindow(QMainWindow):
     def load_book_list(self):
         row = 0
         new_list = []
+        load_booklist()
         self.ui.indexTable.clearContents()
         for book in booklist:
             new_list.append(book)
@@ -738,7 +733,6 @@ class MainWindow(QMainWindow):
         self.ui.addisbnInput.clear()
         self.ui.addOutdateInput.clear()
         self.ui.addTitleInput.clear()
-        #self.ui.stackedWidget.setCurrentWidget(self.ui.indexView)
     
     # Import/Export
     def import_data_file(self):
@@ -854,12 +848,16 @@ class MainWindow(QMainWindow):
             self,
             'Information',
             'Backup\n\nVon dem Bücherindex und deiner Kundendaten wird ein Backup erstellt.\nDiese werden im Installations-Ordner unter \"backup\" gespeichert.\nBitte beachte regelmäßige Backups deiner Daten anzulegen oder zu aktualisieren!',
-            QMessageBox.StandardButton.Ok
+            QMessageBox.StandardButton.Ok |
+            QMessageBox.StandardButton.Cancel
         )
         if button == QMessageBox.StandardButton.Ok:
             save_booklist(True)
-            self.userdb.backup_data()
+            data.backup_data()
             self.ui.stackedWidget.setCurrentWidget(self.ui.homeView)
+        elif button == QMessageBox.StandardButton.Cancel:
+            return
+
 
     def get_backup_data(self):
         button = QMessageBox.warning(
@@ -870,10 +868,12 @@ class MainWindow(QMainWindow):
             QMessageBox.StandardButton.No
         )
         if button == QMessageBox.StandardButton.Yes:
-            os.remove(os.path.abspath(os.curdir)+'\\data\\booklist.csv')
-            shutil.copy2(os.path.abspath(os.curdir)+'\\backup\\Bücherindex-Backup.csv', os.path.abspath(os.curdir)+'\\data\\booklist.csv')
+            os.remove(data.BOOKLIST_F)
+            shutil.copy2(data.BOOKLIST_F_B, data.BOOKLIST_F)
             load_booklist()
-            self.userdb.get_backup_data()
+            self.userdb = None
+            data.get_backup_data()
+            self.userdb = data.UserData()
             self.load_user_list()
             self.load_available_list()
             self.load_book_list()
@@ -907,9 +907,9 @@ def save_booklist(backup=False):
         new.append(book['back_date'])
         rows.append(new)
     if backup:
-        path = os.path.abspath(os.curdir)+'\\backup\\Bücherindex-Backup.csv'
+        path = data.BOOKLIST_F_B
     else:
-        path = os.path.abspath(os.curdir)+'\\data\\booklist.csv'
+        path = data.BOOKLIST_F
     with open(path, 'w', newline='') as f:
             write = csv.writer(f)
             #write.writerow(fields)
@@ -919,7 +919,7 @@ def save_booklist(backup=False):
 # load booklist as csv file
 def load_booklist() -> list:
     new_list = []
-    with open(os.path.abspath(os.curdir) +'\\data\\booklist.csv', 'r') as f:
+    with open(data.BOOKLIST_F, 'r') as f:
         file = csv.reader(f)
         for items in file:
             #print(items)
