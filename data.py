@@ -5,8 +5,12 @@ import os, shutil
 base_dir = os.path.dirname(__file__)
 USERDATA_F = os.path.abspath(os.curdir)+'\\data\\userdata.json'
 USERKND_F = os.path.abspath(os.curdir)+'\\data\\kdnb.bin'
+BOOKLIST_F = os.path.abspath(os.curdir)+'\\data\\booklist.csv'
 USERDATA_F_B = os.path.abspath(os.curdir)+'\\backup\\Backup-userdata.json'
 USERKND_F_B = os.path.abspath(os.curdir)+'\\backup\\Backup-kdnb.bin'
+BOOKLIST_F_B = os.path.abspath(os.curdir)+'\\backup\\Backup-booklist.csv'
+DKEY_F = os.path.abspath(os.curdir)+'\\data\\mo.key'
+DKEY_F_B = os.path.abspath(os.curdir)+'\\backup\\Backup-mo.key'
 class UserData:
     def __init__(self):
         self.db = TinyDB(os.path.abspath(os.curdir)+'\\data\\userdata.json')
@@ -97,14 +101,20 @@ class UserData:
                   
     #Encryption
     def generate_key(self):
+        if os.path.exists(os.path.abspath(os.curdir)+'\\data\\mo.key'):
+            return
         key = Fernet.generate_key()
         with open(os.path.abspath(os.curdir)+'\\data\\mo.key', 'wb') as k:
             k.write(key)
+        print("Data: Neuer Cryptkey erstellt")
     
     def load_key(self):
         key = None
+        if not os.path.exists(os.path.abspath(os.curdir)+'\\data\\mo.key'):
+            self.generate_key()
         with open(os.path.abspath(os.curdir)+'\\data\\mo.key', 'rb') as k:
             key = k.read()
+        print("Data: Cryptkey geladen")
         return key
 
     def encrypt_file(self):
@@ -131,6 +141,18 @@ class UserData:
 
         with open(path, 'wb') as org_file:
             org_file.write(original)
+
+    def encrypt_string(self, text: str) -> bytes:
+        k = Fernet(self.load_key())
+        print("Data: String encrypted.")
+        return k.encrypt(text.encode())
+    
+    def decrypt_string(self, text: bytes) -> str:
+        k = Fernet(self.load_key())
+        print("Data: String decrypted")
+        return k.decrypt(text).decode()
+
+
 
 def backup_data() -> bool:
     if os.path.exists(USERDATA_F) and os.path.exists(USERKND_F):
@@ -168,11 +190,11 @@ def remove_data() -> bool:
     print("Data: Keine User-DB und KND-DB gefunden!")
     return False    
 
-
 def create_base_files() -> bool:
     if os.path.exists(USERDATA_F) or os.path.exists(USERKND_F):
         print("Data: Zuerst User-DB UND KND-DB löschen!")
         return False
+
     if not os.path.exists(USERDATA_F):
         print("Data: Erstelle neue User-DB...")
         with open(USERDATA_F, 'w') as f:
