@@ -3,22 +3,24 @@ from cryptography.fernet import Fernet
 import os, shutil
 
 base_dir = os.path.dirname(__file__)
+
 USERDATA_F = os.path.abspath(os.curdir)+'\\data\\userdata.json'
 USERKND_F = os.path.abspath(os.curdir)+'\\data\\kdnb.bin'
 BOOKLIST_F = os.path.abspath(os.curdir)+'\\data\\booklist.csv'
+DKEY_F = os.path.abspath(os.curdir)+'\\data\\mo.key'
+
 USERDATA_F_B = os.path.abspath(os.curdir)+'\\backup\\Backup-userdata.json'
 USERKND_F_B = os.path.abspath(os.curdir)+'\\backup\\Backup-kdnb.bin'
 BOOKLIST_F_B = os.path.abspath(os.curdir)+'\\backup\\Backup-booklist.csv'
-DKEY_F = os.path.abspath(os.curdir)+'\\data\\mo.key'
 DKEY_F_B = os.path.abspath(os.curdir)+'\\backup\\Backup-mo.key'
+
 class UserData:
     def __init__(self):
         self.db = TinyDB(os.path.abspath(os.curdir)+'\\data\\userdata.json')
-        self.User = Query()
         self.lastKdnNum = 10
         self.load_kndNum()
-        if not self.user_exists("Max Mustermann"):
-            self.add_test_data()
+        # if not self.user_exists("Max Mustermann"):
+        #     self.add_test_data()
 
     def load_kndNum(self) -> int:
         with open(os.path.abspath(os.curdir)+'\\data\\kdnb.bin', 'rb') as f:
@@ -38,8 +40,8 @@ class UserData:
         return new_kdn
 
     def add_test_data(self):
-        self.add_user("1", "Max Mustermann", "muster@mustermail.de" , "01519876543", "Musterhausen", "Musterstraße 666", "11.11.2011",[])
-        self.add_user("2", "Maxi Mustermann", "musterine@mustermail.de", "01519876544", "Musterhausen", "Musterstraße 666", "6.6.1966",[])
+        self.add_user("1", "Max Mustermann", "muster@mustermail.de" , "01519876543", "99668 Musterhausen", "Musterstraße 666", "11.11.2011",[])
+        self.add_user("2", "Maxi Mustermann", "musterine@mustermail.de", "01519876544", "99668 Musterhausen", "Musterstraße 666", "6.6.1966",[])
 
     def add_user(self, kndNum, name, email, phone, city, address, birthday, books) -> bool:
         if not self.user_exists(name):
@@ -99,14 +101,115 @@ class UserData:
             if user['kndNum'] == knd:
                 return user['name']
 
+    def edit_username(self, username: str, newname: str ) -> bool:
+        if username == newname:
+            print("[x] Username identisch, skipping.")
+            return False
+        User = Query()
+        if not self.db.search(User.name == username):
+            print("[x] User zum bearbeiten nicht gefunden")
+            return False
+        else:
+            self.db.update({'name': newname}, User.name == username)
+            print(f"[!] User: {username} wurde zu {newname} geändert")
+            print("\nUserdata:\n", User)
+            return True
+        
+    def edit_usermail(self, username: str, newvalue: str) -> bool:
+        if not self.user_exists(username):
+            print(f"§[x] User: {username} nicht gefunden!")
+            return False
+        User = Query()
+        changeuser = self.db.search(User.name == username)
+        for i in changeuser:
+            oldmail = i['mail']
+        
+        if oldmail == newvalue:
+            print(f"[x] Mailaddresses are the same, skipping!")
+            return False
+        else:
+            self.db.update({'mail': newvalue}, User.name == username)
+            print(f"[!] Usermail from {username} changed to {newvalue}")
+            return True
+ 
+    def edit_userphone(self, username: str, newvalue: str) -> bool:
+        if not self.user_exists(username):
+            print(f"§[x] User: {username} nicht gefunden!")
+            return False
+        User =  Query()
+        changeuser = self.db.search(User.name == username)
+        for i in changeuser:
+            oldphone = i['phone']
+        
+        if oldphone == newvalue:
+            print(f"[x] Old-Phone and New Value are the same, skipping!")
+            return False
+        else:
+            self.db.update({'phone': newvalue}, User.name == username)
+            print(f"[!] User Phone from {username} changed to {newvalue}")
+            return True
+
+    def edit_useraddress(self, username: str, newvalue: str) -> None:
+        if not self.user_exists(username):
+            print(f"§[x] User: {username} nicht gefunden!")
+            return False
+        User =  Query()
+        changeuser = self.db.search(User.name == username)
+        for i in changeuser:
+            oldaddress = i['address']
+        
+        if oldaddress == newvalue:
+            print(f"[x] Old-Address and New Value are the same, skipping!")
+            return False
+        else:
+            self.db.update({'address': newvalue}, User.name == username)
+            print(f"[!] User Address from {username} changed to {newvalue}")
+            return True
+    
+    def edit_usercity(self, username: str, newvalue: str) -> None:
+        if not self.user_exists(username):
+            print(f"§[x] User: {username} nicht gefunden!")
+            return False
+        User =  Query()
+        changeuser = self.db.search(User.name == username)
+        for i in changeuser:
+            oldaddress = i['city']
+        
+        if oldaddress == newvalue:
+            print(f"[x] Old-City and New Value are the same, skipping!")
+            return False
+        else:
+            self.db.update({'city': newvalue}, User.name == username)
+            print(f"[!] User City from {username} changed to {newvalue}")
+            return True
+    
+    def edit_userbirthday(self, username: str, newvalue: str) -> None:
+        if not self.user_exists(username):
+            print(f"[x] User: {username} nicht gefunden!")
+            return False
+        User =  Query()
+        changeuser = self.db.search(User.name == username)
+        for i in changeuser:
+            oldaddress = i['birthday']
+        
+        if oldaddress == newvalue:
+            print(f"[x] Old-Birthday and New Value are the same, skipping!")
+            return False
+        else:
+            self.db.update({'birthday': newvalue}, User.name == username)
+            print(f"[!] User Birthday from {username} changed to {newvalue}")
+            return True
+    
+
+
+
 def backup_data():
     remove_backup_data()
     if os.path.exists(USERDATA_F):
         shutil.copy2(USERDATA_F, USERDATA_F_B)
     if os.path.exists(USERKND_F):
         shutil.copy2(USERKND_F, USERKND_F_B)
-        # shutil.copy2(DKEY_F, DKEY_F_B)
-
+ 
 def get_backup_data():
     remove_data()
     if os.path.exists(USERDATA_F_B) and os.path.exists(USERKND_F_B):
@@ -114,7 +217,6 @@ def get_backup_data():
         shutil.copy2(USERKND_F_B, USERKND_F)
         # shutil.copy2(DKEY_F_B, DKEY_F)
         print("Data: Userdata wiederhergestellt!")
-
 
 def remove_backup_data():
     if os.path.exists(USERDATA_F_B):
@@ -125,7 +227,6 @@ def remove_backup_data():
         # os.remove(DKEY_F_B)
         print("Data: Backup KND gelöscht!")
 
-
 def remove_data():
     if os.path.exists(USERDATA_F):
         os.remove(USERDATA_F)
@@ -133,10 +234,6 @@ def remove_data():
     if os.path.exists(USERKND_F):
         os.remove(USERKND_F)
         print("Data: KND-DB gelöscht!")
-        # os.remove(DKEY_F)
-
-
-  
 
 def create_base_files():
     if os.path.exists(USERDATA_F) or os.path.exists(USERKND_F):
