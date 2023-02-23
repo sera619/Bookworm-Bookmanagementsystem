@@ -38,11 +38,11 @@ To install the software:
 
 ## Screenshots ##
 
-> - ![loadscreen](screens/screen_load.png)
-> - ![mainscreen](screens/screen_mainwindow.png)
-> - ![bookindex](screens/screen_bookindex.png)
-> - ![userscreen](screens/screen_user.png)
-> - ![importscreen](screens/screen_import.png)
-> - ![useredit](screens/usereditview.png)
+> - ![load screen](screens/screen_load.png)
+> - ![main screen](screens/screen_mainwindow.png)
+> - ![book index](screens/screen_bookindex.png)
+> - ![user screen](screens/screen_user.png)
+> - ![import screen](screens/screen_import.png)
+> - ![user edit](screens/usereditview.png)
 > - ![help backup](screens/backup.png)
-> - ![logfiles](screens/logging.png)
+> - ![log files](screens/logging.png)
