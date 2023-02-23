@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1050</width>
+    <width>1065</width>
     <height>615</height>
    </rect>
   </property>
@@ -1390,7 +1390,7 @@ QPushButton::Focus{
                         </item>
                        </layout>
                       </widget>
-                      <widget class="QWidget" name="helpCommonView" native="true">
+                      <widget class="QWidget" name="helpCommonView">
                        <layout class="QVBoxLayout" name="verticalLayout_30">
                         <item alignment="Qt::AlignTop">
                          <widget class="QLabel" name="helpCommonHeader">
