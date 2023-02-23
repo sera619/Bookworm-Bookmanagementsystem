@@ -8,7 +8,7 @@ from res.ui_mainui import Ui_MainWindow
 from res.ui_splashui import Ui_SplashScreen
 from res.utils import *
 import data
-import codecs
+from styles import ButtonStyles, TextStyles
 from qt_material import apply_stylesheet
 
 base_dir = os.path.dirname(__file__)
@@ -203,6 +203,10 @@ class MainWindow(QMainWindow):
         self.ui.usermailLabel.setStyleSheet("color: 'red'; font-weight: 300; font-size: 12pt;")
         self.ui.usergbLabel.setStyleSheet("color: 'red'; font-weight: 300; font-size: 12pt;")
         self.ui.userphoneLabel.setStyleSheet("color: 'red'; font-weight: 300; font-size: 12pt;")
+        
+        self.ui.useEditBtnFrame.setStyleSheet(ButtonStyles.NormalButton)
+        self.ui.userEditInfoLabel.setStyleSheet(TextStyles.InformationText)
+
 
     def close_splash(self):
         self.splash.timer.stop()
@@ -258,6 +262,11 @@ class MainWindow(QMainWindow):
         self.ui.loadBackupBtn.clicked.connect(lambda: self.get_backup_data())
         #self.ui.loadBackupBtn.setEnabled(False)
 
+        # Useredit view
+        self.ui.userEditBtn.clicked.connect(lambda: self.go_edit_view())
+        self.ui.userEditBackBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.userlistView))
+
+        # social 
         self.ui.socialGitBtn.clicked.connect(lambda: webbrowser.open("https://github.com/sera619"))
 
     def window_handler(self):
@@ -294,6 +303,30 @@ class MainWindow(QMainWindow):
         self.set_lenddate_label()
         self.ui.lemdIsbnInput.setText(isbn_list[0])
         self.ui.stackedWidget.setCurrentWidget(self.ui.lendView)
+
+    def go_edit_view(self):
+        if not self.ui.userTable.selectedIndexes():
+            return
+
+        row = self.ui.userTable.selectedIndexes()
+        if row:
+            rows = set(i.row() for i in row)
+        else:
+            rows = [self.ui.userTable.rowCount() - 1]
+        
+        for r in rows:
+            name = self.ui.userTable.item(r, 1).text()
+        
+        userdata = self.userdb.get_userinfo(name)
+
+        self.ui.userEditNameInput.setText(userdata['name'])
+        self.ui.userEditCityInput.setText(userdata['city'])
+        self.ui.userEditBirthdayInput.setText(userdata['birthday'])
+        self.ui.userEditAddressInput.setText(userdata['address'])
+        self.ui.userEditPhoneInput.setText(userdata['phone'])
+        self.ui.userEditMailInput.setText(userdata['mail'])
+        self.ui.stackedWidget.setCurrentWidget(self.ui.userEditView)
+    
 
     def mousePressEvent(self, event):
         self.clickPosition = event.globalPos()
@@ -425,9 +458,8 @@ class MainWindow(QMainWindow):
         
         for r in rows:
             name = self.ui.userTable.item(r, 1).text()
-            last_name = self.ui.userTable.item(r, 2).text()
         
-        full_name = f"{name} {last_name}"
+        full_name = name
         button = QMessageBox.question(
             self,
             'Nutzer löschen?',
@@ -937,9 +969,9 @@ def load_booklist() -> list:
     return new_list
 
 def main(app: QApplication, window: MainWindow):
-    window.splash.show() 
-    window.start_splash()
-    #window.show()
+    #window.splash.show() 
+    #window.start_splash()
+    window.show()
     sys.exit(app.exec())
 
 global booklist
@@ -954,10 +986,9 @@ if __name__ == '__main__':
         main(app, window)
     except KeyboardInterrupt:
         print("Key exit")
-    except:
-        print("Anderer fehler: \n")
+    except Exception as e:
+        print("Anderer fehler:\n", e)
     finally:
-
         app.quit()
         sys.exit()
 
