@@ -12,7 +12,7 @@ from styles import ButtonStyles, TextStyles
 from qt_material import apply_stylesheet
 
 base_dir = os.path.dirname(__file__)
-version_num = "3.0.2"
+version_num = "3.1.4"
 appversiontext = f"Version {version_num} | Copyright S3R43o3 © 2023"
 
 book = {
