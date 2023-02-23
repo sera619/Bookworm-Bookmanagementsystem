@@ -67,6 +67,7 @@ class Splash(QWidget):
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setWindowTitle(f'Bookworm v{version_num}')
+        self.showing = False 
         self.shadow2 = QGraphicsDropShadowEffect()
         self.shadow2.setBlurRadius(40.0)
         self.shadow2.setColor(QColor(255, 0, 0, 90))
@@ -87,8 +88,44 @@ class Splash(QWidget):
         self.timer = QTimer()
         self.progressBar = self.splash.loadProgress
         self.cancelBTN = self.splash.cancelBtn
+        self.shadowanim = QPropertyAnimation(self.shadow1, b'color')
+        self.animationTimer = QTimer()
+        self.animationTimer.setSingleShot(True)
+        self.animationTimer.timeout.connect(lambda: self.change_animation())
         logging.info("[Splash]: Start Splash-Animation!")
         #self.splash.cancelBtn.clicked.connect(lambda: self.close())
+    
+    def change_animation(self):
+        if self.showing == False:
+            self.start_animate_shadow()
+            self.showing = True
+        else:
+            self.stop_animate_shadow()
+            self.showing = False
+
+    def exit_animate_shadow(self):
+        if self.shadowanim:
+            self.shadowanim = None
+        else:
+            return
+
+    def start_animate_shadow(self):
+        self.shadowanim.setDuration(300)
+        self.shadowanim.setStartValue(QColor(255, 0, 0, 0))
+        self.shadowanim.setEndValue(QColor(255, 0, 0, 90))
+        self.shadowanim.setEasingCurve(QEasingCurve.InOutQuad)
+        self.shadowanim.start()
+        self.animationTimer.setSingleShot(True)
+        self.animationTimer.start(450)
+
+    def stop_animate_shadow(self):
+        self.shadowanim.setDuration(300)
+        self.shadowanim.setStartValue(QColor(255, 0, 0, 90))
+        self.shadowanim.setEndValue(QColor(255, 0, 0, 0))
+        self.shadowanim.setEasingCurve(QEasingCurve.InOutQuad)
+        self.shadowanim.start()        
+        self.animationTimer.setSingleShot(True)
+        self.animationTimer.start(450)
 
     def update_bartext(self):
         self.splash.label_2.setText("loading... " + str(self.splash.loadProgress.value()) + "%")
@@ -149,7 +186,7 @@ class MainWindow(QMainWindow):
             progress_callback.emit(value)
             time.sleep(0.05)
         return "Done."
-    
+      
     def output_worker(self, s):
         print(s)
 
@@ -168,6 +205,8 @@ class MainWindow(QMainWindow):
         worker.signals.progress.connect(self.progress_fn)
         self.activeworkder = worker
         self.threadpool.start(worker)
+
+
 
     def apply_styles(self):
         self.ui.tableAvaible.horizontalHeader().setStretchLastSection(True)
@@ -1058,9 +1097,11 @@ def load_booklist() -> list:
     return new_list
 
 def main(app: QApplication, window: MainWindow):
-    #window.splash.show() 
-    #window.start_splash()
-    window.show()
+    window.splash.show() 
+    window.start_splash()
+    window.splash.change_animation()
+
+    #window.show()
     sys.exit(app.exec())
 
 global booklist
