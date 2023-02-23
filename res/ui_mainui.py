@@ -940,6 +940,7 @@ class Ui_MainWindow(object):
 
         self.userEditBirthdayInput = QLineEdit(self.userEditInputFrame)
         self.userEditBirthdayInput.setObjectName(u"userEditBirthdayInput")
+        self.userEditBirthdayInput.setFocusPolicy(Qt.ClickFocus)
 
         self.gridLayout_4.addWidget(self.userEditBirthdayInput, 4, 0, 1, 1)
 

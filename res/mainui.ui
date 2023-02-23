@@ -1643,6 +1643,9 @@ QPushButton::Pressed{
                        </item>
                        <item row="4" column="0">
                         <widget class="QLineEdit" name="userEditBirthdayInput">
+                         <property name="focusPolicy">
+                          <enum>Qt::ClickFocus</enum>
+                         </property>
                          <property name="placeholderText">
                           <string>Userbirthday</string>
                          </property>
