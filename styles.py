@@ -53,13 +53,13 @@ QPushButton::Pressed{
     """
 
 class TextStyles:
-    InformationText = """
-    QLabel{
-	font: 12px "Ethnocentric";
-	color: rgb(170, 0, 0);
-}"""
+	InformationText = """QLabel{font: 12px "Ethnocentric";color: rgb(170, 0, 0);}"""
 
-    SubHeaderText = """
-    QLabel{
-		font: 26pt "Ethnocentric";
-}"""
+	InformationTextOkay = """QLabel{font: 12px "Ethnocentric";color: rgb(0, 170, 0);}"""
+ 
+
+	SubHeaderText = """QLabel{font: 26pt "Ethnocentric";}"""
+	
+	SubHeaderHelp = """QLabel{font: 14pt "Ethnocentric";}"""
+
+	VersionText = """QLabel{font: 7pt "Ethnocentric";color: rgba(255,255,255, 130);}"""
