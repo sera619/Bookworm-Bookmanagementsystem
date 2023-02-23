@@ -26,7 +26,7 @@ book = {
 
 def setup_logger():
     d = datetime.datetime.today().strftime("%d.%m.%Y")
-    logging.basicConfig(filename=".\\logs\\log-"+d+".log", encoding='utf-8', level= logging.INFO,  format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %I:%M:%S %p')
+    logging.basicConfig(filename=os.path.join(base_dir+"\\logs","log-"+d+".log"), encoding='utf-8', level= logging.INFO,  format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %I:%M:%S %p')
     
 # threading worker class
 class Worker(QRunnable):
@@ -1100,7 +1100,7 @@ def load_booklist() -> list:
 def main(app: QApplication, window: MainWindow):
     window.splash.show() 
     window.start_splash()
-    window.splash.change_animation()
+    #window.splash.change_animation()
 
     #window.show()
     sys.exit(app.exec())
