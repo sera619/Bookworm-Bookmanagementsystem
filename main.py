@@ -192,7 +192,7 @@ class MainWindow(QMainWindow):
 
     def thread_complete(self):
         self.counter = 0
-        self.splash.exit_animate_shadow
+        # self.splash.exit_animate_shadow
         self.splash.close()
         self.show()
         self.menuAnim()
