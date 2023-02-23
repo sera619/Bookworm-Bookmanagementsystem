@@ -87,6 +87,7 @@ class Splash(QWidget):
         self.timer = QTimer()
         self.progressBar = self.splash.loadProgress
         self.cancelBTN = self.splash.cancelBtn
+        logging.info("[Splash]: Start Splash-Animation!")
         #self.splash.cancelBtn.clicked.connect(lambda: self.close())
 
     def update_bartext(self):
@@ -209,7 +210,6 @@ class MainWindow(QMainWindow):
         
         self.ui.useEditBtnFrame.setStyleSheet(ButtonStyles.NormalButton)
         self.ui.userEditInfoLabel.setStyleSheet(TextStyles.InformationText)
-
 
     def close_splash(self):
         self.splash.timer.stop()
@@ -945,7 +945,6 @@ class MainWindow(QMainWindow):
             self.ui.stackedWidget.setCurrentWidget(self.ui.homeView)
         elif button == QMessageBox.StandardButton.Cancel:
             return
-
 
     def get_backup_data(self):
         button = QMessageBox.warning(
