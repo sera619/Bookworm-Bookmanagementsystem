@@ -1,6 +1,6 @@
 from tinydb import TinyDB, Query
 from cryptography.fernet import Fernet
-import os, shutil
+import os, shutil, logging
 
 base_dir = os.path.dirname(__file__)
 
@@ -16,6 +16,7 @@ DKEY_F_B = os.path.abspath(os.curdir)+'\\backup\\Backup-mo.key'
 
 class UserData:
     def __init__(self):
+        logging.info("[Data]: Initialize Userdata...")
         self.db = TinyDB(os.path.abspath(os.curdir)+'\\data\\userdata.json')
         self.lastKdnNum = 10
         self.userid_to_change = None
@@ -27,17 +28,20 @@ class UserData:
         with open(os.path.abspath(os.curdir)+'\\data\\kdnb.bin', 'rb') as f:
             num = int.from_bytes(f.read(), byteorder='big')
             self.lastKdnNum = num
+            logging.info("[Data]: Kundennummer geladen!")
             return num
 
     def save_kdnNum(self):
         with open(os.path.abspath(os.curdir)+'\\data\\kdnb.bin', 'wb') as f:
             f.write((self.lastKdnNum).to_bytes(24, byteorder='big', signed=False))
+        logging.info("[Data]: Kundennummer gespeichert!")
 
     def generate_kdnNum(self) -> int:
         new_kdn = self.load_kndNum()
         new_kdn += 1 
         self.lastKdnNum = new_kdn
         self.save_kdnNum()
+        logging.info(f"[Data]: Neue Kundennummer: {new_kdn} generiert!")
         return new_kdn
 
     def add_test_data(self):
@@ -47,27 +51,33 @@ class UserData:
     def add_user(self, kndNum, name, email, phone, city, address, birthday, books) -> bool:
         if not self.user_exists(name):
             self.db.insert({"kndNum": kndNum, "name":name, "mail": email, "phone": phone, "city": city, "address": address, "birthday": birthday, "books": books})
+            logging.info(f"[Data]: Neuer Nutzer: {name} [{kndNum}] erstellt!")
             return True
         else:
+            logging.warning(f"[Data]: Neuer Nutzer konnte nicht erstellt werden!")
             return False
 
     def user_exists(self, username: str) -> bool:
         for user in self.db:
             if user['name'] == username:
+                logging.info(f"[Data]: User {username} existiert!")
                 return True
+        logging.warning(f"[Data]: User {username} existiert nicht!")
         return False
     
     def remove_user(self, name):
         user = Query()
         if self.user_exists(name):
             self.db.remove(user.name == name)
-            #print("User " + name + " gelöscht!")
+            logging.warning(f"[Data]: User: {name} wurde gelöscht!")
         else:
+            logging.warning(f"[Data]: User: {name} konnte nicht gelöscht werden!")
             return
 
     def get_userinfo(self, name) -> dict:
         for user in self.db:
             if user['name'] == name:
+                logging.info(f"[Data]: Get Userinformation from: {user['name']}!")
                 return user
 
     def user_add_book(self, kdn, isbn):
@@ -78,8 +88,12 @@ class UserData:
                     new_list = user['books']
                     new_list.append(isbn)
                     self.db.update({'books': new_list} ,self.User.kndNum == kdn)
-                    print("Buch zu User hinzugefügt") 
+                    print("Buch zu User hinzugefügt")
+                    logging.info(f"[Data]: User: {user['name']} hat Buch(ISBN): {isbn} ausgeliehen!")
                     break
+                else:
+                    logging.info(f"[Data]: User: {user['name']} konnte Buch(ISBN): {isbn} nicht ausleihen!")
+
 
     def user_remove_book(self, kdn, isbn):
         old_books = []
@@ -90,30 +104,35 @@ class UserData:
                     old_books.remove(isbn)
                     self.db.update({'books': old_books} ,self.User.kndNum == kdn)
                     print("Buch von user entfernt")
+                    logging.info(f"[Data]: User: {user['name']} hat Buch(ISBN): {isbn} zurück gebracht!")
                     break
     
     def user_get_books(self, knd) -> list:
         for user in self.db:
             if user['kndNum'] == str(knd):
+                logging.info(f"[Data]: Userbooklist für User: {user['name']} abgefragt!")
                 return user['books']
     
     def get_user_name(self, knd) -> str:
         for user in self.db:
             if user['kndNum'] == knd:
+                logging.info(f"[Data]: Username für Kundennummer: {knd} abgefragt!")
                 return user['name']
 
     def edit_username(self, username: str, newname: str ) -> bool:
         if username == newname:
             print("[x] Username identisch, skipping.")
+            logging.warning(f"[Data]: Username: {username} und {newname} identisch skipping!")
             return False
         User = Query()
         if not self.db.search(User.name == username):
             print("[x] User zum bearbeiten nicht gefunden")
+            logging.warning(f"[Data]: Username: {username} zum bearbeiten nicht gefunden")
             return False
         else:
             self.db.update({'name': newname}, User.name == username)
             print(f"[!] User: {username} wurde zu {newname} geändert")
-            print("\nUserdata:\n", User)
+            logging.info(f"[Data]: Username: {username} wurde zu {newname} geändert")
             return True
         
     def edit_usermail(self, username: str, newvalue: str) -> bool:
@@ -210,6 +229,7 @@ def backup_data():
         shutil.copy2(USERDATA_F, USERDATA_F_B)
     if os.path.exists(USERKND_F):
         shutil.copy2(USERKND_F, USERKND_F_B)
+    logging.info("[Data]: Backup erstellt")
  
 def get_backup_data():
     remove_data()
@@ -218,40 +238,45 @@ def get_backup_data():
         shutil.copy2(USERKND_F_B, USERKND_F)
         # shutil.copy2(DKEY_F_B, DKEY_F)
         print("Data: Userdata wiederhergestellt!")
+        logging.info("[Data]: Userdata wiederhergestellt!")
 
 def remove_backup_data():
     if os.path.exists(USERDATA_F_B):
         os.remove(USERDATA_F_B)
         print("Data: Backup Userdata gelöscht!")
+        logging.info("[Data]: Backup Userdata gelöscht!")
     if os.path.exists(USERKND_F_B):
         os.remove(USERKND_F_B)
         # os.remove(DKEY_F_B)
+        logging.info("[Data]: Backup KND gelöscht!")
         print("Data: Backup KND gelöscht!")
 
 def remove_data():
     if os.path.exists(USERDATA_F):
         os.remove(USERDATA_F)
         print("Data: User-DB gelöscht!")
+        logging.info("[Data]: User-DB gelöscht!")
     if os.path.exists(USERKND_F):
         os.remove(USERKND_F)
         print("Data: KND-DB gelöscht!")
+        logging.info("[Data]: KND-DB gelöscht!")
 
 def create_base_files():
     if os.path.exists(USERDATA_F) or os.path.exists(USERKND_F):
-        print("Data: Zuerst User-DB UND KND-DB löschen!")
+        logging.warning("[Data]: Zuerst User-DB UND KND-DB löschen!")
         return False
 
     if not os.path.exists(USERDATA_F):
-        print("Data: Erstelle neue User-DB...")
+        logging.info("[Data]: Erstelle neue User-DB...")
         with open(USERDATA_F, 'w') as f:
             f.write("")
-        print("Data: Neue User-DB erstellt!")
+        logging.info("[Data]: Neue User-DB erstellt!")
     
     if not os.path.exists(USERKND_F):
-        print("Data: Erstelle neue Bücher-DB...")
+        logging.info("[Data]: Erstelle neue Bücher-DB...")
         with open(USERKND_F, 'wb') as f:
             f.write((10).to_bytes(24, byteorder='big', signed=False))
-        print("Data: Neue KND-DB erstellt")
+        logging.info("[Data]: Neue KND-DB erstellt")
     return True
 
 
