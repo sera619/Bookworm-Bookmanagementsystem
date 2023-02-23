@@ -18,6 +18,7 @@ class UserData:
     def __init__(self):
         self.db = TinyDB(os.path.abspath(os.curdir)+'\\data\\userdata.json')
         self.lastKdnNum = 10
+        self.userid_to_change = None
         self.load_kndNum()
         # if not self.user_exists("Max Mustermann"):
         #     self.add_test_data()
@@ -93,7 +94,7 @@ class UserData:
     
     def user_get_books(self, knd) -> list:
         for user in self.db:
-            if user['kndNum'] == knd:
+            if user['kndNum'] == str(knd):
                 return user['books']
     
     def get_user_name(self, knd) -> str:
@@ -117,7 +118,7 @@ class UserData:
         
     def edit_usermail(self, username: str, newvalue: str) -> bool:
         if not self.user_exists(username):
-            print(f"§[x] User: {username} nicht gefunden!")
+            print(f"[x] User: {username} nicht gefunden!")
             return False
         User = Query()
         changeuser = self.db.search(User.name == username)
@@ -134,7 +135,7 @@ class UserData:
  
     def edit_userphone(self, username: str, newvalue: str) -> bool:
         if not self.user_exists(username):
-            print(f"§[x] User: {username} nicht gefunden!")
+            print(f"[x] User: {username} nicht gefunden!")
             return False
         User =  Query()
         changeuser = self.db.search(User.name == username)
@@ -149,9 +150,9 @@ class UserData:
             print(f"[!] User Phone from {username} changed to {newvalue}")
             return True
 
-    def edit_useraddress(self, username: str, newvalue: str) -> None:
+    def edit_useraddress(self, username: str, newvalue: str) -> bool:
         if not self.user_exists(username):
-            print(f"§[x] User: {username} nicht gefunden!")
+            print(f"[x] User: {username} nicht gefunden!")
             return False
         User =  Query()
         changeuser = self.db.search(User.name == username)
@@ -166,9 +167,9 @@ class UserData:
             print(f"[!] User Address from {username} changed to {newvalue}")
             return True
     
-    def edit_usercity(self, username: str, newvalue: str) -> None:
+    def edit_usercity(self, username: str, newvalue: str) -> bool:
         if not self.user_exists(username):
-            print(f"§[x] User: {username} nicht gefunden!")
+            print(f"[x] User: {username} nicht gefunden!")
             return False
         User =  Query()
         changeuser = self.db.search(User.name == username)
@@ -183,7 +184,7 @@ class UserData:
             print(f"[!] User City from {username} changed to {newvalue}")
             return True
     
-    def edit_userbirthday(self, username: str, newvalue: str) -> None:
+    def edit_userbirthday(self, username: str, newvalue: str) -> bool:
         if not self.user_exists(username):
             print(f"[x] User: {username} nicht gefunden!")
             return False
