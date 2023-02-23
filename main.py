@@ -1,5 +1,4 @@
-import shutil
-import sys, csv, time, webbrowser, traceback, os, datetime, json
+import sys, csv, time, webbrowser, traceback, os, datetime, json, shutil, logging
 from PySide6.QtGui import *
 from PySide6.QtCore import *
 from PySide6.QtWidgets import *
@@ -25,6 +24,10 @@ book = {
     "lend-knd":""
 }
 
+def setup_logger():
+    d = datetime.datetime.today().strftime("%d.%m.%Y")
+    logging.basicConfig(filename=".\\logs\\log-"+d+".log", encoding='utf-8', level= logging.INFO,  format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %I:%M:%S %p')
+    
 # threading worker class
 class Worker(QRunnable):
     def __init__(self, function, *args, **kwargs):
@@ -102,7 +105,7 @@ class MainWindow(QMainWindow):
         self.userdb = data.UserData()
         self.splash = Splash()
         self.threadpool = QThreadPool()
-        print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
+        logging.info("[Main]: Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
         def moveWindow(e):
             if self.isMaximized() == False: 
                 if e.buttons() == Qt.LeftButton:
@@ -1030,18 +1033,21 @@ def main(app: QApplication, window: MainWindow):
 global booklist
 
 if __name__ == '__main__':
+    setup_logger()
+    logging.info("[Main]: Software started")
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon(os.path.join(base_dir, 'appicon.ico')))
     booklist = load_booklist()
     window = MainWindow()
-
     try:
         main(app, window)
     except KeyboardInterrupt:
         print("Key exit")
     except Exception as e:
         print("Anderer fehler:\n", e)
+        logging.error("[Main]: Error: ", e)
     finally:
+        logging.info("[Main]: Software closed.")
         app.quit()
         sys.exit()
 
