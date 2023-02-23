@@ -32,3 +32,13 @@ clean:
 	@if exist ".pytest_cache" rd /s /q .pytest_cache
 	@if exist "./data/mo.key" del /s /q .\data\mo.key
 	@powershell write-host -fore Green Cleanup finished!
+
+pack:
+	cls
+	@if exist "./package/Bookworm.zip" del /s /q .\package\Bookworm.zip
+	@powershell write-host -fore Yellow Start packaging process...
+	@move .\package\Setup-Bookworm.exe .
+	@tar.exe -a -c -f Bookworm.zip Setup-Bookworm.exe
+	@move .\Bookworm.zip .\package
+	@move .\Setup-Bookworm.exe .\package
+	@powershell write-host -fore Green Packaging done!
