@@ -91,7 +91,7 @@ class Splash(QWidget):
         self.shadowanim = QPropertyAnimation(self.shadow1, b'color')
         self.animationTimer = QTimer()
         self.animationTimer.setSingleShot(True)
-        self.animationTimer.timeout.connect(lambda: self.change_animation())
+        self.animationTimer.timeout.connect(self.change_animation)
         logging.info("[Splash]: Start Splash-Animation!")
         #self.splash.cancelBtn.clicked.connect(lambda: self.close())
     
@@ -192,6 +192,7 @@ class MainWindow(QMainWindow):
 
     def thread_complete(self):
         self.counter = 0
+        self.splash.exit_animate_shadow
         self.splash.close()
         self.show()
         self.menuAnim()
