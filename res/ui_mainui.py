@@ -855,6 +855,128 @@ class Ui_MainWindow(object):
         self.verticalLayout_25.addWidget(self.frame_27)
 
         self.stackedWidget.addWidget(self.helpView)
+        self.userEditView = QWidget()
+        self.userEditView.setObjectName(u"userEditView")
+        self.verticalLayout_49 = QVBoxLayout(self.userEditView)
+        self.verticalLayout_49.setSpacing(0)
+        self.verticalLayout_49.setObjectName(u"verticalLayout_49")
+        self.verticalLayout_49.setContentsMargins(0, 0, 0, 0)
+        self.frame_53 = QFrame(self.userEditView)
+        self.frame_53.setObjectName(u"frame_53")
+        self.frame_53.setFrameShape(QFrame.StyledPanel)
+        self.frame_53.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_48 = QVBoxLayout(self.frame_53)
+        self.verticalLayout_48.setObjectName(u"verticalLayout_48")
+        self.frame_54 = QFrame(self.frame_53)
+        self.frame_54.setObjectName(u"frame_54")
+        self.frame_54.setFrameShape(QFrame.StyledPanel)
+        self.frame_54.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_50 = QVBoxLayout(self.frame_54)
+        self.verticalLayout_50.setObjectName(u"verticalLayout_50")
+        self.label_41 = QLabel(self.frame_54)
+        self.label_41.setObjectName(u"label_41")
+        self.label_41.setStyleSheet(u"QLabel{\n"
+"	font: 26pt \"Ethnocentric\";\n"
+"}")
+        self.label_41.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_50.addWidget(self.label_41)
+
+
+        self.verticalLayout_48.addWidget(self.frame_54, 0, Qt.AlignTop)
+
+        self.userEditInfoLabel = QLabel(self.frame_53)
+        self.userEditInfoLabel.setObjectName(u"userEditInfoLabel")
+        self.userEditInfoLabel.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_48.addWidget(self.userEditInfoLabel)
+
+        self.frame_55 = QFrame(self.frame_53)
+        self.frame_55.setObjectName(u"frame_55")
+        sizePolicy3.setHeightForWidth(self.frame_55.sizePolicy().hasHeightForWidth())
+        self.frame_55.setSizePolicy(sizePolicy3)
+        self.frame_55.setMinimumSize(QSize(0, 0))
+        self.frame_55.setFrameShape(QFrame.StyledPanel)
+        self.frame_55.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_51 = QVBoxLayout(self.frame_55)
+        self.verticalLayout_51.setObjectName(u"verticalLayout_51")
+        self.userEditInputFrame = QFrame(self.frame_55)
+        self.userEditInputFrame.setObjectName(u"userEditInputFrame")
+        self.userEditInputFrame.setMinimumSize(QSize(200, 150))
+        self.userEditInputFrame.setFrameShape(QFrame.StyledPanel)
+        self.userEditInputFrame.setFrameShadow(QFrame.Raised)
+        self.gridLayout_4 = QGridLayout(self.userEditInputFrame)
+        self.gridLayout_4.setSpacing(12)
+        self.gridLayout_4.setObjectName(u"gridLayout_4")
+        self.userEditAddressInput = QLineEdit(self.userEditInputFrame)
+        self.userEditAddressInput.setObjectName(u"userEditAddressInput")
+        self.userEditAddressInput.setFocusPolicy(Qt.ClickFocus)
+
+        self.gridLayout_4.addWidget(self.userEditAddressInput, 3, 0, 1, 1)
+
+        self.userEditNameInput = QLineEdit(self.userEditInputFrame)
+        self.userEditNameInput.setObjectName(u"userEditNameInput")
+        self.userEditNameInput.setFocusPolicy(Qt.ClickFocus)
+
+        self.gridLayout_4.addWidget(self.userEditNameInput, 0, 0, 1, 1)
+
+        self.userEditMailInput = QLineEdit(self.userEditInputFrame)
+        self.userEditMailInput.setObjectName(u"userEditMailInput")
+        self.userEditMailInput.setFocusPolicy(Qt.ClickFocus)
+
+        self.gridLayout_4.addWidget(self.userEditMailInput, 1, 0, 1, 1)
+
+        self.userEditCityInput = QLineEdit(self.userEditInputFrame)
+        self.userEditCityInput.setObjectName(u"userEditCityInput")
+        self.userEditCityInput.setFocusPolicy(Qt.ClickFocus)
+
+        self.gridLayout_4.addWidget(self.userEditCityInput, 5, 0, 1, 1)
+
+        self.userEditPhoneInput = QLineEdit(self.userEditInputFrame)
+        self.userEditPhoneInput.setObjectName(u"userEditPhoneInput")
+        self.userEditPhoneInput.setFocusPolicy(Qt.ClickFocus)
+
+        self.gridLayout_4.addWidget(self.userEditPhoneInput, 2, 0, 1, 1)
+
+        self.userEditBirthdayInput = QLineEdit(self.userEditInputFrame)
+        self.userEditBirthdayInput.setObjectName(u"userEditBirthdayInput")
+
+        self.gridLayout_4.addWidget(self.userEditBirthdayInput, 4, 0, 1, 1)
+
+
+        self.verticalLayout_51.addWidget(self.userEditInputFrame)
+
+
+        self.verticalLayout_48.addWidget(self.frame_55, 0, Qt.AlignHCenter|Qt.AlignVCenter)
+
+        self.useEditBtnFrame = QFrame(self.frame_53)
+        self.useEditBtnFrame.setObjectName(u"useEditBtnFrame")
+        self.useEditBtnFrame.setFrameShape(QFrame.StyledPanel)
+        self.useEditBtnFrame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_24 = QHBoxLayout(self.useEditBtnFrame)
+        self.horizontalLayout_24.setObjectName(u"horizontalLayout_24")
+        self.userEditChangeBtn = QPushButton(self.useEditBtnFrame)
+        self.userEditChangeBtn.setObjectName(u"userEditChangeBtn")
+
+        self.horizontalLayout_24.addWidget(self.userEditChangeBtn, 0, Qt.AlignHCenter)
+
+        self.userEditDelBtn = QPushButton(self.useEditBtnFrame)
+        self.userEditDelBtn.setObjectName(u"userEditDelBtn")
+
+        self.horizontalLayout_24.addWidget(self.userEditDelBtn)
+
+        self.userEditBackBtn = QPushButton(self.useEditBtnFrame)
+        self.userEditBackBtn.setObjectName(u"userEditBackBtn")
+
+        self.horizontalLayout_24.addWidget(self.userEditBackBtn, 0, Qt.AlignHCenter)
+
+
+        self.verticalLayout_48.addWidget(self.useEditBtnFrame, 0, Qt.AlignHCenter)
+
+
+        self.verticalLayout_49.addWidget(self.frame_53)
+
+        self.stackedWidget.addWidget(self.userEditView)
         self.indexView = QWidget()
         self.indexView.setObjectName(u"indexView")
         self.verticalLayout_8 = QVBoxLayout(self.indexView)
@@ -1019,6 +1141,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_35.setContentsMargins(0, 0, 0, 0)
         self.addBookFrame = QFrame(self.frame_37)
         self.addBookFrame.setObjectName(u"addBookFrame")
+        self.addBookFrame.setMinimumSize(QSize(0, 0))
         self.addBookFrame.setFrameShape(QFrame.StyledPanel)
         self.addBookFrame.setFrameShadow(QFrame.Raised)
         self.formLayout = QFormLayout(self.addBookFrame)
@@ -1249,7 +1372,7 @@ class Ui_MainWindow(object):
 "	font: 16pt \"Ethnocentric\";\n"
 "}")
 
-        self.verticalLayout_14.addWidget(self.label_9, 0, Qt.AlignHCenter|Qt.AlignTop)
+        self.verticalLayout_14.addWidget(self.label_9, 0, Qt.AlignHCenter|Qt.AlignVCenter)
 
         self.frame_12 = QFrame(self.frame_11)
         self.frame_12.setObjectName(u"frame_12")
@@ -1260,7 +1383,7 @@ class Ui_MainWindow(object):
         self.gridLayout = QGridLayout(self.frame_12)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setHorizontalSpacing(6)
-        self.gridLayout.setVerticalSpacing(0)
+        self.gridLayout.setVerticalSpacing(8)
         self.gridLayout.setContentsMargins(12, 12, 12, 12)
         self.usermailLabel = QLabel(self.frame_12)
         self.usermailLabel.setObjectName(u"usermailLabel")
@@ -1369,10 +1492,10 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.usergbLabel, 7, 1, 1, 1)
 
 
-        self.verticalLayout_14.addWidget(self.frame_12)
+        self.verticalLayout_14.addWidget(self.frame_12, 0, Qt.AlignTop)
 
 
-        self.verticalLayout_12.addWidget(self.frame_11)
+        self.verticalLayout_12.addWidget(self.frame_11, 0, Qt.AlignVCenter)
 
         self.frame_10 = QFrame(self.frame_9)
         self.frame_10.setObjectName(u"frame_10")
@@ -1414,6 +1537,11 @@ class Ui_MainWindow(object):
         self.deleteUserBtn.setObjectName(u"deleteUserBtn")
 
         self.horizontalLayout_12.addWidget(self.deleteUserBtn)
+
+        self.userEditBtn = QPushButton(self.frame_10)
+        self.userEditBtn.setObjectName(u"userEditBtn")
+
+        self.horizontalLayout_12.addWidget(self.userEditBtn)
 
 
         self.verticalLayout_12.addWidget(self.frame_10, 0, Qt.AlignHCenter)
@@ -2403,7 +2531,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(7)
+        self.stackedWidget.setCurrentIndex(3)
         self.lendDayBox.setCurrentIndex(0)
         self.exportFileInputbox.setCurrentIndex(-1)
         self.exportFileTypeBox.setCurrentIndex(-1)
@@ -2455,6 +2583,17 @@ class Ui_MainWindow(object):
         self.helpTextLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.loadBackupBtn.setText(QCoreApplication.translate("MainWindow", u"Daten Wiederherstellen", None))
         self.helpBackBtn.setText(QCoreApplication.translate("MainWindow", u"Zur\u00fcck", None))
+        self.label_41.setText(QCoreApplication.translate("MainWindow", u"Benutzer Bearbeiten", None))
+        self.userEditInfoLabel.setText(QCoreApplication.translate("MainWindow", u"\u00c4ndere die Daten und klicke den '\u00c4ndern'-Button.", None))
+        self.userEditAddressInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Useraddress", None))
+        self.userEditNameInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Username", None))
+        self.userEditMailInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Usermail", None))
+        self.userEditCityInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Usercity", None))
+        self.userEditPhoneInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Userphone", None))
+        self.userEditBirthdayInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Userbirthday", None))
+        self.userEditChangeBtn.setText(QCoreApplication.translate("MainWindow", u"\u00c4ndern", None))
+        self.userEditDelBtn.setText(QCoreApplication.translate("MainWindow", u"L\u00f6schen", None))
+        self.userEditBackBtn.setText(QCoreApplication.translate("MainWindow", u"Abbrechen", None))
         self.indexHeaderLabel.setText(QCoreApplication.translate("MainWindow", u"B\u00fccherIndex", None))
         ___qtablewidgetitem = self.indexTable.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"ISBN", None));
@@ -2507,6 +2646,7 @@ class Ui_MainWindow(object):
         self.showUserBookBtn.setText(QCoreApplication.translate("MainWindow", u"B\u00fccher", None))
         self.newUserBtn.setText(QCoreApplication.translate("MainWindow", u"Neu", None))
         self.deleteUserBtn.setText(QCoreApplication.translate("MainWindow", u"L\u00f6schen", None))
+        self.userEditBtn.setText(QCoreApplication.translate("MainWindow", u"Bearbeiten", None))
         self.userBookHeadLabel.setText(QCoreApplication.translate("MainWindow", u"Nutzer Buchliste", None))
         self.label_28.setText(QCoreApplication.translate("MainWindow", u"Kundennummer:", None))
         self.userBookKndLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
