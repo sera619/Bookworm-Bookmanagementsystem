@@ -27,7 +27,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1046, 608)
+        MainWindow.resize(1050, 615)
         icon = QIcon()
         icon.addFile(u":/icons/fonts/favicon.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -39,7 +39,9 @@ class Ui_MainWindow(object):
 "")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.centralwidget.setStyleSheet(u"")
+        self.centralwidget.setStyleSheet(u"#centralwidget{\n"
+"	border-radius: 50px;\n"
+"}")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -49,13 +51,14 @@ class Ui_MainWindow(object):
         self.topFrame.setStyleSheet(u"QFrame{\n"
 "	border: rgba(255, 0, 0, 0);\n"
 "	border-radius: 25px;\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
 " }")
         self.topFrame.setFrameShape(QFrame.StyledPanel)
         self.topFrame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout = QHBoxLayout(self.topFrame)
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setContentsMargins(0, 10, 0, 0)
         self.frame_5 = QFrame(self.topFrame)
         self.frame_5.setObjectName(u"frame_5")
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
@@ -97,7 +100,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_17.addWidget(self.menu_btn)
 
 
-        self.horizontalLayout.addWidget(self.frame_5, 0, Qt.AlignHCenter)
+        self.horizontalLayout.addWidget(self.frame_5, 0, Qt.AlignHCenter|Qt.AlignBottom)
 
         self.headerFrame = QFrame(self.topFrame)
         self.headerFrame.setObjectName(u"headerFrame")
@@ -152,7 +155,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2 = QHBoxLayout(self.topmenuFrame)
         self.horizontalLayout_2.setSpacing(6)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(45, 10, 10, 0)
+        self.horizontalLayout_2.setContentsMargins(45, 10, 25, 0)
         self.min_window_btn = QPushButton(self.topmenuFrame)
         self.min_window_btn.setObjectName(u"min_window_btn")
         self.min_window_btn.setMaximumSize(QSize(25, 25))
@@ -270,11 +273,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.menu_btn_import)
 
-        self.menu_btn_backup = QPushButton(self.menuFrame)
-        self.menu_btn_backup.setObjectName(u"menu_btn_backup")
-
-        self.verticalLayout_3.addWidget(self.menu_btn_backup)
-
         self.menu_btn_help = QPushButton(self.menuFrame)
         self.menu_btn_help.setObjectName(u"menu_btn_help")
 
@@ -368,7 +366,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_15 = QHBoxLayout(self.frame_17)
         self.horizontalLayout_15.setSpacing(0)
         self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
-        self.horizontalLayout_15.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_15.setContentsMargins(10, 0, 10, 0)
         self.socialGitBtn = QPushButton(self.frame_17)
         self.socialGitBtn.setObjectName(u"socialGitBtn")
         font2 = QFont()
@@ -702,9 +700,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_29.setSpacing(0)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.verticalLayout_29.setContentsMargins(0, 0, 0, 0)
-        self.frame_33 = QFrame(self.frame_31)
-        self.frame_33.setObjectName(u"frame_33")
-        self.frame_33.setStyleSheet(u"QPushButton{\n"
+        self.helpMenuBtnFrame = QFrame(self.frame_31)
+        self.helpMenuBtnFrame.setObjectName(u"helpMenuBtnFrame")
+        self.helpMenuBtnFrame.setStyleSheet(u"QPushButton{\n"
 "	border: 1px solid rgba(170, 0, 0,165);\n"
 "	padding: 2px 20px;\n"
 "	border-radius: 2%;\n"
@@ -729,65 +727,195 @@ class Ui_MainWindow(object):
 "	border: 1.4px solid rgb(255, 0, 0);\n"
 "	color: #FFF;\n"
 "}")
-        self.frame_33.setFrameShape(QFrame.StyledPanel)
-        self.frame_33.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_31 = QVBoxLayout(self.frame_33)
+        self.helpMenuBtnFrame.setFrameShape(QFrame.StyledPanel)
+        self.helpMenuBtnFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_31 = QVBoxLayout(self.helpMenuBtnFrame)
         self.verticalLayout_31.setSpacing(20)
         self.verticalLayout_31.setObjectName(u"verticalLayout_31")
         self.verticalLayout_31.setContentsMargins(0, 25, 0, 10)
-        self.comHelpBtn = QPushButton(self.frame_33)
+        self.comHelpBtn = QPushButton(self.helpMenuBtnFrame)
         self.comHelpBtn.setObjectName(u"comHelpBtn")
 
         self.verticalLayout_31.addWidget(self.comHelpBtn)
 
-        self.indexHelpBtn = QPushButton(self.frame_33)
+        self.indexHelpBtn = QPushButton(self.helpMenuBtnFrame)
         self.indexHelpBtn.setObjectName(u"indexHelpBtn")
 
         self.verticalLayout_31.addWidget(self.indexHelpBtn)
 
-        self.userHelpBtn = QPushButton(self.frame_33)
+        self.userHelpBtn = QPushButton(self.helpMenuBtnFrame)
         self.userHelpBtn.setObjectName(u"userHelpBtn")
 
         self.verticalLayout_31.addWidget(self.userHelpBtn)
 
-        self.importHelpBtn = QPushButton(self.frame_33)
+        self.importHelpBtn = QPushButton(self.helpMenuBtnFrame)
         self.importHelpBtn.setObjectName(u"importHelpBtn")
 
         self.verticalLayout_31.addWidget(self.importHelpBtn)
 
 
-        self.verticalLayout_29.addWidget(self.frame_33, 0, Qt.AlignTop)
+        self.verticalLayout_29.addWidget(self.helpMenuBtnFrame, 0, Qt.AlignTop)
 
 
         self.horizontalLayout_19.addWidget(self.frame_31, 0, Qt.AlignLeft)
 
-        self.frame_32 = QFrame(self.frame_29)
+        self.stackedWidgetHelp = QStackedWidget(self.frame_29)
+        self.stackedWidgetHelp.setObjectName(u"stackedWidgetHelp")
+        sizePolicy.setHeightForWidth(self.stackedWidgetHelp.sizePolicy().hasHeightForWidth())
+        self.stackedWidgetHelp.setSizePolicy(sizePolicy)
+        self.stackedWidgetHelp.setFrameShape(QFrame.StyledPanel)
+        self.stackedWidgetHelp.setFrameShadow(QFrame.Raised)
+        self.helpHomeView = QWidget()
+        self.helpHomeView.setObjectName(u"helpHomeView")
+        self.verticalLayout_52 = QVBoxLayout(self.helpHomeView)
+        self.verticalLayout_52.setObjectName(u"verticalLayout_52")
+        self.frame_32 = QFrame(self.helpHomeView)
         self.frame_32.setObjectName(u"frame_32")
-        sizePolicy.setHeightForWidth(self.frame_32.sizePolicy().hasHeightForWidth())
-        self.frame_32.setSizePolicy(sizePolicy)
         self.frame_32.setFrameShape(QFrame.StyledPanel)
         self.frame_32.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_30 = QVBoxLayout(self.frame_32)
+        self.verticalLayout_53 = QVBoxLayout(self.frame_32)
+        self.verticalLayout_53.setObjectName(u"verticalLayout_53")
+        self.helpHomeLabel = QLabel(self.frame_32)
+        self.helpHomeLabel.setObjectName(u"helpHomeLabel")
+        self.helpHomeLabel.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_53.addWidget(self.helpHomeLabel, 0, Qt.AlignHCenter|Qt.AlignVCenter)
+
+
+        self.verticalLayout_52.addWidget(self.frame_32)
+
+        self.stackedWidgetHelp.addWidget(self.helpHomeView)
+        self.helpCommonView = QWidget()
+        self.helpCommonView.setObjectName(u"helpCommonView")
+        self.verticalLayout_30 = QVBoxLayout(self.helpCommonView)
         self.verticalLayout_30.setObjectName(u"verticalLayout_30")
-        self.helpTextHeadLabel = QLabel(self.frame_32)
-        self.helpTextHeadLabel.setObjectName(u"helpTextHeadLabel")
-        self.helpTextHeadLabel.setStyleSheet(u"QLabel{\n"
+        self.helpCommonHeader = QLabel(self.helpCommonView)
+        self.helpCommonHeader.setObjectName(u"helpCommonHeader")
+        self.helpCommonHeader.setStyleSheet(u"QLabel{\n"
 "	\n"
 "	font: 14pt \"Ethnocentric\";\n"
 "}")
-        self.helpTextHeadLabel.setAlignment(Qt.AlignCenter)
+        self.helpCommonHeader.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_30.addWidget(self.helpTextHeadLabel, 0, Qt.AlignTop)
+        self.verticalLayout_30.addWidget(self.helpCommonHeader, 0, Qt.AlignTop)
 
-        self.helpTextLabel = QLabel(self.frame_32)
-        self.helpTextLabel.setObjectName(u"helpTextLabel")
-        sizePolicy3.setHeightForWidth(self.helpTextLabel.sizePolicy().hasHeightForWidth())
-        self.helpTextLabel.setSizePolicy(sizePolicy3)
-        self.helpTextLabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+        self.helpCommonLabel = QLabel(self.helpCommonView)
+        self.helpCommonLabel.setObjectName(u"helpCommonLabel")
+        sizePolicy3.setHeightForWidth(self.helpCommonLabel.sizePolicy().hasHeightForWidth())
+        self.helpCommonLabel.setSizePolicy(sizePolicy3)
+        self.helpCommonLabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.verticalLayout_30.addWidget(self.helpTextLabel)
+        self.verticalLayout_30.addWidget(self.helpCommonLabel)
 
-        self.loadBackupBtn = QPushButton(self.frame_32)
+        self.stackedWidgetHelp.addWidget(self.helpCommonView)
+        self.helpIndexView = QWidget()
+        self.helpIndexView.setObjectName(u"helpIndexView")
+        self.verticalLayout_56 = QVBoxLayout(self.helpIndexView)
+        self.verticalLayout_56.setObjectName(u"verticalLayout_56")
+        self.helpIndexHeader = QLabel(self.helpIndexView)
+        self.helpIndexHeader.setObjectName(u"helpIndexHeader")
+        self.helpIndexHeader.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+
+        self.verticalLayout_56.addWidget(self.helpIndexHeader, 0, Qt.AlignTop)
+
+        self.helpIndexLabel = QLabel(self.helpIndexView)
+        self.helpIndexLabel.setObjectName(u"helpIndexLabel")
+        sizePolicy3.setHeightForWidth(self.helpIndexLabel.sizePolicy().hasHeightForWidth())
+        self.helpIndexLabel.setSizePolicy(sizePolicy3)
+        self.helpIndexLabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+
+        self.verticalLayout_56.addWidget(self.helpIndexLabel)
+
+        self.stackedWidgetHelp.addWidget(self.helpIndexView)
+        self.helpUserView = QWidget()
+        self.helpUserView.setObjectName(u"helpUserView")
+        self.verticalLayout_57 = QVBoxLayout(self.helpUserView)
+        self.verticalLayout_57.setObjectName(u"verticalLayout_57")
+        self.helpUserHeader = QLabel(self.helpUserView)
+        self.helpUserHeader.setObjectName(u"helpUserHeader")
+        self.helpUserHeader.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_57.addWidget(self.helpUserHeader, 0, Qt.AlignTop)
+
+        self.helpUserLabel = QLabel(self.helpUserView)
+        self.helpUserLabel.setObjectName(u"helpUserLabel")
+        sizePolicy3.setHeightForWidth(self.helpUserLabel.sizePolicy().hasHeightForWidth())
+        self.helpUserLabel.setSizePolicy(sizePolicy3)
+        self.helpUserLabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+
+        self.verticalLayout_57.addWidget(self.helpUserLabel)
+
+        self.stackedWidgetHelp.addWidget(self.helpUserView)
+        self.helpImportView = QWidget()
+        self.helpImportView.setObjectName(u"helpImportView")
+        self.verticalLayout_54 = QVBoxLayout(self.helpImportView)
+        self.verticalLayout_54.setObjectName(u"verticalLayout_54")
+        self.helpImportHeader = QLabel(self.helpImportView)
+        self.helpImportHeader.setObjectName(u"helpImportHeader")
+        self.helpImportHeader.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_54.addWidget(self.helpImportHeader)
+
+        self.helpImportLabel = QLabel(self.helpImportView)
+        self.helpImportLabel.setObjectName(u"helpImportLabel")
+        sizePolicy2.setHeightForWidth(self.helpImportLabel.sizePolicy().hasHeightForWidth())
+        self.helpImportLabel.setSizePolicy(sizePolicy2)
+        self.helpImportLabel.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_54.addWidget(self.helpImportLabel)
+
+        self.frame_56 = QFrame(self.helpImportView)
+        self.frame_56.setObjectName(u"frame_56")
+        self.frame_56.setFrameShape(QFrame.StyledPanel)
+        self.frame_56.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_55 = QVBoxLayout(self.frame_56)
+        self.verticalLayout_55.setObjectName(u"verticalLayout_55")
+        self.backupAvailbleLabel = QLabel(self.frame_56)
+        self.backupAvailbleLabel.setObjectName(u"backupAvailbleLabel")
+        self.backupAvailbleLabel.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_55.addWidget(self.backupAvailbleLabel)
+
+        self.backupDateLabel = QLabel(self.frame_56)
+        self.backupDateLabel.setObjectName(u"backupDateLabel")
+        self.backupDateLabel.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_55.addWidget(self.backupDateLabel)
+
+
+        self.verticalLayout_54.addWidget(self.frame_56, 0, Qt.AlignHCenter|Qt.AlignVCenter)
+
+        self.frame_33 = QFrame(self.helpImportView)
+        self.frame_33.setObjectName(u"frame_33")
+        self.frame_33.setFrameShape(QFrame.StyledPanel)
+        self.frame_33.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_25 = QHBoxLayout(self.frame_33)
+        self.horizontalLayout_25.setObjectName(u"horizontalLayout_25")
+        self.menu_btn_backup = QPushButton(self.frame_33)
+        self.menu_btn_backup.setObjectName(u"menu_btn_backup")
+        self.menu_btn_backup.setStyleSheet(u"QPushButton{\n"
+"	border: 1px solid rgba(170, 0, 0,165);\n"
+"	padding: 2px 20px;\n"
+"	border-radius: 2%;\n"
+"	color: rgb(255, 0, 0)\n"
+"}\n"
+"\n"
+"QPushButton::Hover{\n"
+"	border: 1.4px solid rgb(255, 0, 0);\n"
+"	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 0, 0, 70), stop:1 rgba(65, 0, 0, 70));\n"
+"	\n"
+"}\n"
+"\n"
+"QPushButton::Pressed{\n"
+"	border: 1.4px solid;\n"
+"	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0  rgba(65, 0, 0, 255), stop:1 rgba(255, 0, 0, 255));\n"
+"	border-color: rgb(255, 0, 0);\n"
+"	color: #FFF;\n"
+"}")
+
+        self.horizontalLayout_25.addWidget(self.menu_btn_backup)
+
+        self.loadBackupBtn = QPushButton(self.frame_33)
         self.loadBackupBtn.setObjectName(u"loadBackupBtn")
         self.loadBackupBtn.setStyleSheet(u"QPushButton{\n"
 "	border: 1px solid rgba(170, 0, 0,165);\n"
@@ -809,10 +937,14 @@ class Ui_MainWindow(object):
 "	color: #FFF;\n"
 "}")
 
-        self.verticalLayout_30.addWidget(self.loadBackupBtn, 0, Qt.AlignHCenter)
+        self.horizontalLayout_25.addWidget(self.loadBackupBtn)
 
 
-        self.horizontalLayout_19.addWidget(self.frame_32)
+        self.verticalLayout_54.addWidget(self.frame_33, 0, Qt.AlignHCenter|Qt.AlignBottom)
+
+        self.stackedWidgetHelp.addWidget(self.helpImportView)
+
+        self.horizontalLayout_19.addWidget(self.stackedWidgetHelp)
 
 
         self.verticalLayout_27.addWidget(self.frame_29)
@@ -842,7 +974,7 @@ class Ui_MainWindow(object):
         self.frame_30.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_18 = QHBoxLayout(self.frame_30)
         self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
-        self.horizontalLayout_18.setContentsMargins(0, 9, 0, 9)
+        self.horizontalLayout_18.setContentsMargins(0, 9, 5, 9)
         self.helpBackBtn = QPushButton(self.frame_30)
         self.helpBackBtn.setObjectName(u"helpBackBtn")
 
@@ -2460,13 +2592,15 @@ class Ui_MainWindow(object):
         self.bottomFrame.setStyleSheet(u"QFrame{\n"
 "	border: rgba(255, 0, 0, 0);\n"
 "	border-radius: 25px;\n"
+"	\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
 " }")
         self.bottomFrame.setFrameShape(QFrame.StyledPanel)
         self.bottomFrame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_4 = QHBoxLayout(self.bottomFrame)
         self.horizontalLayout_4.setSpacing(0)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_4.setContentsMargins(25, 0, 25, 5)
         self.leftFram = QFrame(self.bottomFrame)
         self.leftFram.setObjectName(u"leftFram")
         self.leftFram.setStyleSheet(u"border-radius: 25px;")
@@ -2530,7 +2664,7 @@ class Ui_MainWindow(object):
 "")
         self.currentTimeLabel.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_5.addWidget(self.currentTimeLabel, 0, Qt.AlignLeft)
+        self.horizontalLayout_5.addWidget(self.currentTimeLabel, 0, Qt.AlignHCenter)
 
 
         self.horizontalLayout_4.addWidget(self.rightFrame)
@@ -2542,8 +2676,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(2)
         self.lendDayBox.setCurrentIndex(0)
+        self.stackedWidgetHelp.setCurrentIndex(4)
         self.exportFileInputbox.setCurrentIndex(-1)
         self.exportFileTypeBox.setCurrentIndex(-1)
 
@@ -2563,7 +2698,6 @@ class Ui_MainWindow(object):
         self.menu_btn_awaylist.setText(QCoreApplication.translate("MainWindow", u"Ausgeliehen", None))
         self.menu_btn_userindex.setText(QCoreApplication.translate("MainWindow", u"Kundenindex", None))
         self.menu_btn_import.setText(QCoreApplication.translate("MainWindow", u"Importieren", None))
-        self.menu_btn_backup.setText(QCoreApplication.translate("MainWindow", u"Backup", None))
         self.menu_btn_help.setText(QCoreApplication.translate("MainWindow", u"Hilfe", None))
         self.appLogoLabel.setText("")
         self.homeHeaderLabel.setText(QCoreApplication.translate("MainWindow", u"Willkommen", None))
@@ -2590,8 +2724,18 @@ class Ui_MainWindow(object):
         self.indexHelpBtn.setText(QCoreApplication.translate("MainWindow", u"Index Hilfe", None))
         self.userHelpBtn.setText(QCoreApplication.translate("MainWindow", u"Kunden Hilfe", None))
         self.importHelpBtn.setText(QCoreApplication.translate("MainWindow", u"Datenimport", None))
-        self.helpTextHeadLabel.setText(QCoreApplication.translate("MainWindow", u"Allgemein", None))
-        self.helpTextLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.helpHomeLabel.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Klicke im Men\u00fc auf das Thema<br/>bei dem du Hilfe brauchst.</p></body></html>", None))
+        self.helpCommonHeader.setText(QCoreApplication.translate("MainWindow", u"Allgemein - Hilfe", None))
+        self.helpCommonLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.helpIndexHeader.setText(QCoreApplication.translate("MainWindow", u"Index - Hilfe", None))
+        self.helpIndexLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.helpUserHeader.setText(QCoreApplication.translate("MainWindow", u"Kunden - Hilfe", None))
+        self.helpUserLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.helpImportHeader.setText(QCoreApplication.translate("MainWindow", u"Datenimport - Hilfe", None))
+        self.helpImportLabel.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>- Um ein neues Backup zu erstellen ,<br/>klicke auf den 'Backup erstellen'-Button<br/><br/>- Um ein vorhandenes Backup wiederherszustellen, <br/>klicke auf den 'Daten Wiederherstellen'-Button</p></body></html>", None))
+        self.backupAvailbleLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.backupDateLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.menu_btn_backup.setText(QCoreApplication.translate("MainWindow", u"Backup erstellen", None))
         self.loadBackupBtn.setText(QCoreApplication.translate("MainWindow", u"Daten Wiederherstellen", None))
         self.helpBackBtn.setText(QCoreApplication.translate("MainWindow", u"Zur\u00fcck", None))
         self.label_41.setText(QCoreApplication.translate("MainWindow", u"Benutzer Bearbeiten", None))
@@ -2632,7 +2776,7 @@ class Ui_MainWindow(object):
         self.addGenreInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Thriller", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Ausgabe", None))
         self.addOutdateInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"12.02.2023", None))
-        self.addBookBtn.setText(QCoreApplication.translate("MainWindow", u"Add", None))
+        self.addBookBtn.setText(QCoreApplication.translate("MainWindow", u"Erstellen", None))
         self.clearAddInputBtn.setText(QCoreApplication.translate("MainWindow", u"Clear", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"Kundenindex", None))
         ___qtablewidgetitem6 = self.userTable.horizontalHeaderItem(0)

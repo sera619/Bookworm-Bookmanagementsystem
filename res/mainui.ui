@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1046</width>
-    <height>608</height>
+    <width>1050</width>
+    <height>615</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,9 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">#centralwidget{
+	border-radius: 50px;
+}</string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
@@ -51,6 +53,7 @@
        <string notr="true">QFrame{
 	border: rgba(255, 0, 0, 0);
 	border-radius: 25px;
+	background-color: rgba(255, 255, 255, 0);
  }</string>
       </property>
       <property name="frameShape">
@@ -67,7 +70,7 @@
         <number>0</number>
        </property>
        <property name="topMargin">
-        <number>0</number>
+        <number>10</number>
        </property>
        <property name="rightMargin">
         <number>0</number>
@@ -75,7 +78,7 @@
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <item alignment="Qt::AlignHCenter">
+       <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
         <widget class="QFrame" name="frame_5">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -215,7 +218,7 @@ QPushButton::Pressed{
            <number>10</number>
           </property>
           <property name="rightMargin">
-           <number>10</number>
+           <number>25</number>
           </property>
           <property name="bottomMargin">
            <number>0</number>
@@ -445,13 +448,6 @@ QPushButton::Focus{
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="menu_btn_backup">
-            <property name="text">
-             <string>Backup</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="menu_btn_help">
             <property name="text">
              <string>Hilfe</string>
@@ -500,7 +496,7 @@ QPushButton::Focus{
              </sizepolicy>
             </property>
             <property name="currentIndex">
-             <number>3</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="homeView">
              <property name="sizePolicy">
@@ -652,13 +648,13 @@ font: 12pt &quot;Ethnocentric&quot;;
                      <number>0</number>
                     </property>
                     <property name="leftMargin">
-                     <number>0</number>
+                     <number>10</number>
                     </property>
                     <property name="topMargin">
                      <number>0</number>
                     </property>
                     <property name="rightMargin">
-                     <number>0</number>
+                     <number>10</number>
                     </property>
                     <property name="bottomMargin">
                      <number>0</number>
@@ -1267,7 +1263,7 @@ QPushButton::Focus{
                         <number>0</number>
                        </property>
                        <item alignment="Qt::AlignTop">
-                        <widget class="QFrame" name="frame_33">
+                        <widget class="QFrame" name="helpMenuBtnFrame">
                          <property name="styleSheet">
                           <string notr="true">QPushButton{
 	border: 1px solid rgba(170, 0, 0,165);
@@ -1352,7 +1348,7 @@ QPushButton::Focus{
                      </widget>
                     </item>
                     <item>
-                     <widget class="QFrame" name="frame_32">
+                     <widget class="QStackedWidget" name="stackedWidgetHelp">
                       <property name="sizePolicy">
                        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                         <horstretch>0</horstretch>
@@ -1365,43 +1361,204 @@ QPushButton::Focus{
                       <property name="frameShadow">
                        <enum>QFrame::Raised</enum>
                       </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_30">
-                       <item alignment="Qt::AlignTop">
-                        <widget class="QLabel" name="helpTextHeadLabel">
-                         <property name="styleSheet">
-                          <string notr="true">QLabel{
+                      <property name="currentIndex">
+                       <number>4</number>
+                      </property>
+                      <widget class="QWidget" name="helpHomeView">
+                       <layout class="QVBoxLayout" name="verticalLayout_52">
+                        <item>
+                         <widget class="QFrame" name="frame_32">
+                          <property name="frameShape">
+                           <enum>QFrame::StyledPanel</enum>
+                          </property>
+                          <property name="frameShadow">
+                           <enum>QFrame::Raised</enum>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_53">
+                           <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                            <widget class="QLabel" name="helpHomeLabel">
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Klicke im Menü auf das Thema&lt;br/&gt;bei dem du Hilfe brauchst.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignCenter</set>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                      <widget class="QWidget" name="helpCommonView" native="true">
+                       <layout class="QVBoxLayout" name="verticalLayout_30">
+                        <item alignment="Qt::AlignTop">
+                         <widget class="QLabel" name="helpCommonHeader">
+                          <property name="styleSheet">
+                           <string notr="true">QLabel{
 	
 	font: 14pt &quot;Ethnocentric&quot;;
 }</string>
-                         </property>
-                         <property name="text">
-                          <string>Allgemein</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignCenter</set>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QLabel" name="helpTextLabel">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-                           <horstretch>0</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="text">
-                          <string>TextLabel</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignHCenter|Qt::AlignTop</set>
-                         </property>
-                        </widget>
-                       </item>
-                       <item alignment="Qt::AlignHCenter">
-                        <widget class="QPushButton" name="loadBackupBtn">
-                         <property name="styleSheet">
-                          <string notr="true">QPushButton{
+                          </property>
+                          <property name="text">
+                           <string>Allgemein - Hilfe</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="helpCommonLabel">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="text">
+                           <string>TextLabel</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                      <widget class="QWidget" name="helpIndexView">
+                       <layout class="QVBoxLayout" name="verticalLayout_56">
+                        <item alignment="Qt::AlignTop">
+                         <widget class="QLabel" name="helpIndexHeader">
+                          <property name="text">
+                           <string>Index - Hilfe</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="helpIndexLabel">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="text">
+                           <string>TextLabel</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                      <widget class="QWidget" name="helpUserView">
+                       <layout class="QVBoxLayout" name="verticalLayout_57">
+                        <item alignment="Qt::AlignTop">
+                         <widget class="QLabel" name="helpUserHeader">
+                          <property name="text">
+                           <string>Kunden - Hilfe</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="helpUserLabel">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="text">
+                           <string>TextLabel</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                      <widget class="QWidget" name="helpImportView">
+                       <layout class="QVBoxLayout" name="verticalLayout_54">
+                        <item>
+                         <widget class="QLabel" name="helpImportHeader">
+                          <property name="text">
+                           <string>Datenimport - Hilfe</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="helpImportLabel">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="text">
+                           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;- Um ein neues Backup zu erstellen ,&lt;br/&gt;klicke auf den 'Backup erstellen'-Button&lt;br/&gt;&lt;br/&gt;- Um ein vorhandenes Backup wiederherszustellen, &lt;br/&gt;klicke auf den 'Daten Wiederherstellen'-Button&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                         <widget class="QFrame" name="frame_56">
+                          <property name="frameShape">
+                           <enum>QFrame::StyledPanel</enum>
+                          </property>
+                          <property name="frameShadow">
+                           <enum>QFrame::Raised</enum>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_55">
+                           <item>
+                            <widget class="QLabel" name="backupAvailbleLabel">
+                             <property name="text">
+                              <string>TextLabel</string>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignCenter</set>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="backupDateLabel">
+                             <property name="text">
+                              <string>TextLabel</string>
+                             </property>
+                             <property name="alignment">
+                              <set>Qt::AlignCenter</set>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
+                         <widget class="QFrame" name="frame_33">
+                          <property name="frameShape">
+                           <enum>QFrame::StyledPanel</enum>
+                          </property>
+                          <property name="frameShadow">
+                           <enum>QFrame::Raised</enum>
+                          </property>
+                          <layout class="QHBoxLayout" name="horizontalLayout_25">
+                           <item>
+                            <widget class="QPushButton" name="menu_btn_backup">
+                             <property name="styleSheet">
+                              <string notr="true">QPushButton{
 	border: 1px solid rgba(170, 0, 0,165);
 	padding: 2px 20px;
 	border-radius: 2%;
@@ -1420,13 +1577,45 @@ QPushButton::Pressed{
 	border-color: rgb(255, 0, 0);
 	color: #FFF;
 }</string>
-                         </property>
-                         <property name="text">
-                          <string>Daten Wiederherstellen</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
+                             </property>
+                             <property name="text">
+                              <string>Backup erstellen</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="loadBackupBtn">
+                             <property name="styleSheet">
+                              <string notr="true">QPushButton{
+	border: 1px solid rgba(170, 0, 0,165);
+	padding: 2px 20px;
+	border-radius: 2%;
+	color: rgb(255, 0, 0)
+}
+
+QPushButton::Hover{
+	border: 1.4px solid rgb(255, 0, 0);
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 0, 0, 70), stop:1 rgba(65, 0, 0, 70));
+	
+}
+
+QPushButton::Pressed{
+	border: 1.4px solid;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0  rgba(65, 0, 0, 255), stop:1 rgba(255, 0, 0, 255));
+	border-color: rgb(255, 0, 0);
+	color: #FFF;
+}</string>
+                             </property>
+                             <property name="text">
+                              <string>Daten Wiederherstellen</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
                      </widget>
                     </item>
                    </layout>
@@ -1469,7 +1658,7 @@ QPushButton::Pressed{
                      <number>9</number>
                     </property>
                     <property name="rightMargin">
-                     <number>0</number>
+                     <number>5</number>
                     </property>
                     <property name="bottomMargin">
                      <number>9</number>
@@ -2256,7 +2445,7 @@ QPushButton::Pressed{
                     <item>
                      <widget class="QPushButton" name="addBookBtn">
                       <property name="text">
-                       <string>Add</string>
+                       <string>Erstellen</string>
                       </property>
                      </widget>
                     </item>
@@ -4457,6 +4646,8 @@ QPushButton::Pressed{
        <string notr="true">QFrame{
 	border: rgba(255, 0, 0, 0);
 	border-radius: 25px;
+	
+	background-color: rgba(255, 255, 255, 0);
  }</string>
       </property>
       <property name="frameShape">
@@ -4470,16 +4661,16 @@ QPushButton::Pressed{
         <number>0</number>
        </property>
        <property name="leftMargin">
-        <number>0</number>
+        <number>25</number>
        </property>
        <property name="topMargin">
         <number>0</number>
        </property>
        <property name="rightMargin">
-        <number>0</number>
+        <number>25</number>
        </property>
        <property name="bottomMargin">
-        <number>0</number>
+        <number>5</number>
        </property>
        <item alignment="Qt::AlignLeft|Qt::AlignTop">
         <widget class="QFrame" name="leftFram">
@@ -4569,7 +4760,7 @@ QPushButton::Pressed{
             </property>
            </widget>
           </item>
-          <item alignment="Qt::AlignLeft">
+          <item alignment="Qt::AlignHCenter">
            <widget class="QLabel" name="currentTimeLabel">
             <property name="font">
              <font>
