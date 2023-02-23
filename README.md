@@ -18,8 +18,9 @@ This features are currently available:
 >   - User-ID
 >   - Personal information (birthday, age, name, address, phone, mailaddress)
 >   - a list with lended books
+> - Edit Userinformation
 > - Import/Export the bookindex to .csv, .txt or .json
-> - Backup bookindex and userdata
+> - Backup full Data or Restore backup
 > - GUI that shows up all data and let you manage books and user
 > - Add, remove, lend books
 
