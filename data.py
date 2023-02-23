@@ -279,4 +279,7 @@ def create_base_files():
         logging.info("[Data]: Neue KND-DB erstellt")
     return True
 
-
+def backupdata_exists() -> bool:
+    if os.path.exists(USERDATA_F_B):
+        return True
+    return False
