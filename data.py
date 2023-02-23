@@ -138,6 +138,7 @@ class UserData:
     def edit_usermail(self, username: str, newvalue: str) -> bool:
         if not self.user_exists(username):
             print(f"[x] User: {username} nicht gefunden!")
+            logging.warning(f"[Data]: Usermail: {username} zum bearbeiten nicht gefunden")
             return False
         User = Query()
         changeuser = self.db.search(User.name == username)
@@ -146,15 +147,18 @@ class UserData:
         
         if oldmail == newvalue:
             print(f"[x] Mailaddresses are the same, skipping!")
+            logging.warning(f"[Data]: Usermail: {username} und {newvalue} identisch skipping!")
             return False
         else:
             self.db.update({'mail': newvalue}, User.name == username)
             print(f"[!] Usermail from {username} changed to {newvalue}")
+            logging.info(f"[Data]: Usermail: {username} wurde zu {newvalue} geändert")
             return True
  
     def edit_userphone(self, username: str, newvalue: str) -> bool:
         if not self.user_exists(username):
             print(f"[x] User: {username} nicht gefunden!")
+            logging.warning(f"[Data]: Username: {username} zum bearbeiten nicht gefunden")
             return False
         User =  Query()
         changeuser = self.db.search(User.name == username)
@@ -163,15 +167,19 @@ class UserData:
         
         if oldphone == newvalue:
             print(f"[x] Old-Phone and New Value are the same, skipping!")
+            logging.warning(f"[Data]: Userphone: {username} und {newvalue} identisch skipping!")
             return False
         else:
             self.db.update({'phone': newvalue}, User.name == username)
             print(f"[!] User Phone from {username} changed to {newvalue}")
+            logging.info(f"[Data]: Userphone: {username} wurde zu {newvalue} geändert")
             return True
 
     def edit_useraddress(self, username: str, newvalue: str) -> bool:
         if not self.user_exists(username):
             print(f"[x] User: {username} nicht gefunden!")
+            logging.warning(f"[Data]: Username: {username} zum bearbeiten nicht gefunden")
+
             return False
         User =  Query()
         changeuser = self.db.search(User.name == username)
@@ -180,15 +188,18 @@ class UserData:
         
         if oldaddress == newvalue:
             print(f"[x] Old-Address and New Value are the same, skipping!")
+            logging.warning(f"[Data]: Useraddress: {username} und {newvalue} identisch skipping!")
             return False
         else:
             self.db.update({'address': newvalue}, User.name == username)
             print(f"[!] User Address from {username} changed to {newvalue}")
+            logging.info(f"[Data]: Useraddress: {username} wurde zu {newvalue} geändert")
             return True
     
     def edit_usercity(self, username: str, newvalue: str) -> bool:
         if not self.user_exists(username):
             print(f"[x] User: {username} nicht gefunden!")
+            logging.warning(f"[Data]: Usercity: {username} zum bearbeiten nicht gefunden")
             return False
         User =  Query()
         changeuser = self.db.search(User.name == username)
@@ -197,15 +208,18 @@ class UserData:
         
         if oldaddress == newvalue:
             print(f"[x] Old-City and New Value are the same, skipping!")
+            logging.warning(f"[Data]: Usercity: {username} und {newvalue} identisch skipping!")
             return False
         else:
             self.db.update({'city': newvalue}, User.name == username)
             print(f"[!] User City from {username} changed to {newvalue}")
+            logging.info(f"[Data]: Usercity: {username} wurde zu {newvalue} geändert")
             return True
     
     def edit_userbirthday(self, username: str, newvalue: str) -> bool:
         if not self.user_exists(username):
             print(f"[x] User: {username} nicht gefunden!")
+            logging.warning(f"[Data]: Username: {username} zum bearbeiten nicht gefunden")
             return False
         User =  Query()
         changeuser = self.db.search(User.name == username)
@@ -214,10 +228,12 @@ class UserData:
         
         if oldaddress == newvalue:
             print(f"[x] Old-Birthday and New Value are the same, skipping!")
+            logging.warning(f"[Data]: Userbirthday: {username} und {newvalue} identisch skipping!")
             return False
         else:
             self.db.update({'birthday': newvalue}, User.name == username)
             print(f"[!] User Birthday from {username} changed to {newvalue}")
+            logging.info(f"[Data]: Userbirthday: {username} wurde zu {newvalue} geändert")
             return True
     
 
