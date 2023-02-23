@@ -12,7 +12,7 @@ from qt_material import apply_stylesheet
 
 base_dir = os.path.dirname(__file__)
 version_num = "3.2.1"
-appversiontext = f"Version {version_num} | Copyright S3R43o3 © 2023"
+appversiontext = f"Version {version_num} | Copyright 2023 by S3R43o3"
 
 book = {
     "isbn": None,
@@ -125,8 +125,10 @@ class MainWindow(QMainWindow):
         self.load_available_list()
         self.apply_styles()
         self.setup_buttons()
+        self.update_backup_display()
         self.ui.version_label.setText(appversiontext)
         self.ui.stackedWidget.setCurrentWidget(self.ui.homeView)
+        self.ui.stackedWidgetHelp.setCurrentWidget(self.ui.helpHomeView)
 
     def set_date_text(self):
         datelabel = self.ui.currentDateLabel
@@ -210,6 +212,19 @@ class MainWindow(QMainWindow):
         
         self.ui.useEditBtnFrame.setStyleSheet(ButtonStyles.NormalButton)
         self.ui.userEditInfoLabel.setStyleSheet(TextStyles.InformationText)
+        self.ui.version_label.setStyleSheet(TextStyles.VersionText)
+        self.ui.helpCommonHeader.setStyleSheet(TextStyles.SubHeaderHelp)
+        self.ui.helpCommonLabel.setStyleSheet(TextStyles.InformationText)
+        self.ui.helpImportHeader.setStyleSheet(TextStyles.SubHeaderHelp)
+        self.ui.helpImportLabel.setStyleSheet(TextStyles.InformationText)
+        self.ui.helpHomeLabel.setStyleSheet(TextStyles.SubHeaderHelp)
+        self.ui.helpIndexHeader.setStyleSheet(TextStyles.SubHeaderHelp)
+        self.ui.helpIndexLabel.setStyleSheet(TextStyles.InformationText)
+        self.ui.helpUserHeader.setStyleSheet(TextStyles.SubHeaderHelp)
+        self.ui.helpUserLabel.setStyleSheet(TextStyles.InformationText)
+
+        self.ui.backupAvailbleLabel.setStyleSheet(TextStyles.InformationText)
+        self.ui.backupDateLabel.setStyleSheet(TextStyles.InformationText)
 
     def close_splash(self):
         self.splash.timer.stop()
@@ -269,6 +284,13 @@ class MainWindow(QMainWindow):
         self.ui.userEditBtn.clicked.connect(lambda: self.go_edit_view())
         self.ui.userEditBackBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.userlistView))
         self.ui.userEditChangeBtn.clicked.connect(lambda: self.update_user())
+
+        # Help view
+        self.ui.comHelpBtn.clicked.connect(lambda: self.ui.stackedWidgetHelp.setCurrentWidget(self.ui.helpCommonView))
+        self.ui.importHelpBtn.clicked.connect(lambda: self.ui.stackedWidgetHelp.setCurrentWidget(self.ui.helpImportView))
+        self.ui.indexHelpBtn.clicked.connect(lambda: self.ui.stackedWidgetHelp.setCurrentWidget(self.ui.helpIndexView))
+        self.ui.userHelpBtn.clicked.connect(lambda: self.ui.stackedWidgetHelp.setCurrentWidget(self.ui.helpUserView))
+        self.ui.helpBackBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.homeView))
         # social 
         self.ui.socialGitBtn.clicked.connect(lambda: webbrowser.open("https://github.com/sera619"))
 
@@ -943,6 +965,7 @@ class MainWindow(QMainWindow):
             save_booklist(True)
             data.backup_data()
             self.ui.stackedWidget.setCurrentWidget(self.ui.homeView)
+            self.update_backup_display()
         elif button == QMessageBox.StandardButton.Cancel:
             return
 
@@ -974,6 +997,17 @@ class MainWindow(QMainWindow):
                 self.ui.stackedWidget.setCurrentWidget(self.ui.homeView)
         elif button == QMessageBox.StandardButton.No:
             return
+
+    def update_backup_display(self):
+        self.ui.backupAvailbleLabel.setText("")
+        self.ui.backupDateLabel.setText("")
+        if data.backupdata_exists():
+            self.ui.backupDateLabel.setText("")
+            self.ui.backupAvailbleLabel.setStyleSheet(TextStyles.InformationTextOkay)
+            self.ui.backupAvailbleLabel.setText("Backup verfügbar!")
+        else:
+            self.ui.backupAvailbleLabel.setStyleSheet(TextStyles.InformationText)
+            self.ui.backupAvailbleLabel.setText("Kein Backup verfügbar!")
 
 
 # save booklist as csv file in ./data/booklist.csv
@@ -1024,9 +1058,9 @@ def load_booklist() -> list:
     return new_list
 
 def main(app: QApplication, window: MainWindow):
-    window.splash.show() 
-    window.start_splash()
-    #window.show()
+    #window.splash.show() 
+    #window.start_splash()
+    window.show()
     sys.exit(app.exec())
 
 global booklist
