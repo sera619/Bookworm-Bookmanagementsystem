@@ -44,4 +44,5 @@ To install the software:
 > - ![userscreen](screens/screen_user.png)
 > - ![importscreen](screens/screen_import.png)
 > - ![useredit](screens/usereditview.png)
+> - ![help backup](screens/backup.png)
 > - ![logfiles](screens/logging.png)
