@@ -29,7 +29,7 @@ This features are currently available:
 The software is only tested on Windows 10/11 not on Unix or others!
 To install the software:
 
-> - Download the last release.
+> - Download the last [release](https://github.com/sera619/Bookworm-Bookmanagementsystem/releases).
 > - Extract the ZIP-File in a directory of your choice.
 > - Run the Setup-Bookworm.exe and follow the installationmenu.
 > - The installer will save the software at 'C:\Program Files (x86)\Creative Dudes Studio\Bookworm'
@@ -42,3 +42,4 @@ To install the software:
 > - ![bookindex](screens/screen_bookindex.png)
 > - ![userscreen](screens/screen_user.png)
 > - ![importscreen](screens/screen_import.png)
+> - ![useredit](screens/usereditview.png)
