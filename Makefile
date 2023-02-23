@@ -33,6 +33,19 @@ clean:
 	@if exist "./data/mo.key" del /s /q .\data\mo.key
 	@powershell write-host -fore Green Cleanup finished!
 
+fullclean:
+	cls
+	@powershell write-host -fore Yellow Full-Cleanup Projectfiles...
+	@if exist "./build" rd /s /q build
+	@if exist "./dist" rd /s /q dist
+	@if exist "./res/__pycache__" rd /s /q .\res\__pycache__
+	@if exist "./tests/__pycache__" rd /s /q .\tests\__pycache__
+	@if exist "__pycache__" rd /s /q .\__pycache__
+	@if exist ".pytest_cache" rd /s /q .pytest_cache
+	@if exist "./data/mo.key" del /s /q .\data\mo.key
+	@if exist "./logs" del /s /q .\logs\*
+	@powershell write-host -fore Green Full-Cleanup finished!
+
 pack:
 	cls
 	@if exist "./package/Bookworm.zip" del /s /q .\package\Bookworm.zip
