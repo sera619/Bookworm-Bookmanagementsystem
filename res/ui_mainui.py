@@ -866,7 +866,9 @@ class Ui_MainWindow(object):
         self.frame_53.setFrameShape(QFrame.StyledPanel)
         self.frame_53.setFrameShadow(QFrame.Raised)
         self.verticalLayout_48 = QVBoxLayout(self.frame_53)
+        self.verticalLayout_48.setSpacing(0)
         self.verticalLayout_48.setObjectName(u"verticalLayout_48")
+        self.verticalLayout_48.setContentsMargins(0, 0, -1, 0)
         self.frame_54 = QFrame(self.frame_53)
         self.frame_54.setObjectName(u"frame_54")
         self.frame_54.setFrameShape(QFrame.StyledPanel)
@@ -881,6 +883,14 @@ class Ui_MainWindow(object):
         self.label_41.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_50.addWidget(self.label_41)
+
+        self.line_10 = QFrame(self.frame_54)
+        self.line_10.setObjectName(u"line_10")
+        self.line_10.setStyleSheet(u"background-color: rgb(255, 0, 0);")
+        self.line_10.setFrameShape(QFrame.HLine)
+        self.line_10.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout_50.addWidget(self.line_10)
 
 
         self.verticalLayout_48.addWidget(self.frame_54, 0, Qt.AlignTop)
