@@ -23,6 +23,7 @@ This features are currently available:
 > - Backup full Data or Restore backup
 > - GUI that shows up all data and let you manage books and user
 > - Add, remove, lend books
+> - Realtime logging for better support
 
 ## Installation ##
 
@@ -43,3 +44,4 @@ To install the software:
 > - ![userscreen](screens/screen_user.png)
 > - ![importscreen](screens/screen_import.png)
 > - ![useredit](screens/usereditview.png)
+> - ![logfiles](screens/logging.png)
