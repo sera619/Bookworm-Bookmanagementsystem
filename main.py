@@ -381,7 +381,6 @@ class MainWindow(QMainWindow):
         self.ui.userEditPhoneInput.clear()
         self.ui.userEditMailInput.clear()
 
-
     def mousePressEvent(self, event):
         self.clickPosition = event.globalPos()
     
@@ -1023,9 +1022,9 @@ def load_booklist() -> list:
     return new_list
 
 def main(app: QApplication, window: MainWindow):
-    #window.splash.show() 
-    #window.start_splash()
-    window.show()
+    window.splash.show() 
+    window.start_splash()
+    #window.show()
     sys.exit(app.exec())
 
 global booklist
