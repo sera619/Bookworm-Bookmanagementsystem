@@ -1033,6 +1033,7 @@ global booklist
 
 if __name__ == '__main__':
     setup_logger()
+    logging.info("-----------------------------------------------")
     logging.info("[Main]: Software started")
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon(os.path.join(base_dir, 'appicon.ico')))
