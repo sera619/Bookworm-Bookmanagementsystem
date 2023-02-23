@@ -265,7 +265,7 @@ class MainWindow(QMainWindow):
         # Useredit view
         self.ui.userEditBtn.clicked.connect(lambda: self.go_edit_view())
         self.ui.userEditBackBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.userlistView))
-
+        self.ui.userEditChangeBtn.clicked.connect(lambda: self.update_user())
         # social 
         self.ui.socialGitBtn.clicked.connect(lambda: webbrowser.open("https://github.com/sera619"))
 
@@ -305,6 +305,7 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget.setCurrentWidget(self.ui.lendView)
 
     def go_edit_view(self):
+        self.ui.userEditInfoLabel.setText("Ändere die Daten und klicke den 'Ändern'-Button.")
         if not self.ui.userTable.selectedIndexes():
             return
 
@@ -325,8 +326,61 @@ class MainWindow(QMainWindow):
         self.ui.userEditAddressInput.setText(userdata['address'])
         self.ui.userEditPhoneInput.setText(userdata['phone'])
         self.ui.userEditMailInput.setText(userdata['mail'])
+        self.userdb.userid_to_change = userdata['kndNum']
         self.ui.stackedWidget.setCurrentWidget(self.ui.userEditView)
     
+    def update_user(self):
+        newname = self.ui.userEditNameInput.text()
+        newcity = self.ui.userEditCityInput.text()
+        newbirthday = self.ui.userEditBirthdayInput.text()
+        newaddress =  self.ui.userEditAddressInput.text()
+        newphone = self.ui.userEditPhoneInput.text()
+        newmail =  self.ui.userEditMailInput.text()
+        currentusername = self.userdb.get_user_name(self.userdb.userid_to_change)
+        changedinfos = ['Email', 'Addresse', 'Telefon', 'Stadt', 'Geburtstag', 'Name']
+        if not self.userdb.edit_usermail(currentusername, newmail) or not is_mail_valid(newmail):
+            changedinfos.remove('Email')
+        if not self.userdb.edit_useraddress(currentusername, newaddress):
+            changedinfos.remove('Addresse')
+        if not self.userdb.edit_userphone(currentusername, newphone):
+            changedinfos.remove('Telefon')
+        if not self.userdb.edit_usercity(currentusername, newcity):
+            changedinfos.remove('Stadt')
+        if not self.userdb.edit_userbirthday(currentusername, newbirthday) or not is_birthday_valid(newbirthday):
+            changedinfos.remove('Geburtstag')
+        
+        if not self.userdb.edit_username(currentusername, newname):
+            changedinfos.remove('Name')
+
+        changed =""         
+        for x in changedinfos:
+            changed += "- "+ x + "\n"
+        
+        if changed == "":
+            changed = "None"
+
+        button = QMessageBox.information(
+            self,
+            'Kundenupdate',
+            f'Die folgende Kundeninformation von\n{newname}\nwurden erfolgreich geändert:\n{changed}',
+            QMessageBox.StandardButton.Ok 
+        )
+        if button == QMessageBox.StandardButton.Ok:
+            self.userdb.userid_to_change = None
+            self.clear_userinformation()
+            self.reset_edituser_view()
+            self.load_user_list()
+            self.ui.stackedWidget.setCurrentWidget(self.ui.userlistView)
+
+    def reset_edituser_view(self):
+        self.ui.userEditInfoLabel.setText("Ändere die Daten und klicke den 'Ändern'-Button.")
+        self.ui.userEditNameInput.clear()
+        self.ui.userEditCityInput.clear()
+        self.ui.userEditBirthdayInput.clear()
+        self.ui.userEditAddressInput.clear()
+        self.ui.userEditPhoneInput.clear()
+        self.ui.userEditMailInput.clear()
+
 
     def mousePressEvent(self, event):
         self.clickPosition = event.globalPos()
