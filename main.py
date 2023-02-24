@@ -297,6 +297,7 @@ class MainWindow(QMainWindow):
         self.ui.menu_btn_backup.clicked.connect(lambda: self.menuAnim())
         self.ui.menu_btn_help.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.helpView))
         self.ui.menu_btn_help.clicked.connect(lambda: self.menuAnim())
+        self.ui.menu_btn_help.clicked.connect(lambda: self.ui.stackedWidgetHelp.setCurrentWidget(self.ui.helpHomeView))
         #self.ui.menu_btn_help.setEnabled(False)
 
         self.ui.userBookBackBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.userlistView))
@@ -1092,7 +1093,7 @@ class MainWindow(QMainWindow):
         if data.backupdata_exists():
             self.ui.backupDateLabel.setStyleSheet(TextStyles.InformationTextOkay)
             self.ui.backupAvailbleLabel.setStyleSheet(TextStyles.InformationTextOkay)
-            self.ui.backupDateLabel.setText("Letzes Update: " + APPCONFIG['lastBackup'])
+            self.ui.backupDateLabel.setText("Letztes Backup: " + APPCONFIG['lastBackup'])
             self.ui.backupAvailbleLabel.setText("Backup verfügbar!")
         else:
             self.ui.backupDateLabel.setText("")
