@@ -35,6 +35,7 @@ To install the software:
 > - Run the Setup-Bookworm.exe and follow the installationmenu.
 > - The installer will save the software at 'C:\Program Files (x86)\Creative Dudes Studio\Bookworm'
 > - After installation, navigate to the installationdirectory and run 'Bookworm.exe'
+> - If you facing any issue or have some other trouble, please open a [new Issue](https://github.com/sera619/Bookworm-Bookmanagementsystem/issues)
 
 ## Screenshots ##
 
