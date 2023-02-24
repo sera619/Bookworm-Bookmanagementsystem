@@ -11,8 +11,8 @@ from styles import ButtonStyles, TextStyles
 from qt_material import apply_stylesheet
 
 base_dir = os.path.dirname(__file__)
-version_num = "3.3.7"
-appversiontext = f"Version {version_num} | Copyright 2023 by S3R43o3"
+APPCONFIG = data.config_app()
+appversiontext = f"Version {APPCONFIG['version']} | Copyright 2023 by S3R43o3"
 
 book = {
     "isbn": None,
@@ -66,7 +66,6 @@ class Splash(QWidget):
         self.splash.setupUi(self)
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
-        self.setWindowTitle(f'Bookworm v{version_num}')
         self.showing = False 
         self.shadow2 = QGraphicsDropShadowEffect()
         self.shadow2.setBlurRadius(40.0)
@@ -84,7 +83,7 @@ class Splash(QWidget):
         self.splash.loadProgress.setRange(0, 100)
         self.splash.loadProgress.setTextVisible(False)
         self.splash.loadProgress.valueChanged.connect(lambda: self.update_bartext())
-        self.splash.versionLabel.setText(f"Version {version_num}")
+        self.splash.versionLabel.setText(f"Version {APPCONFIG['version']}")
         self.timer = QTimer()
         self.progressBar = self.splash.loadProgress
         self.cancelBTN = self.splash.cancelBtn
@@ -138,7 +137,7 @@ class MainWindow(QMainWindow):
         apply_stylesheet(app, theme='dark_red.xml')
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
-        self.setWindowTitle(f'Bookworm {version_num}')
+        self.setWindowTitle(f'Bookworm {APPCONFIG["version"]}')
         self.setWindowIcon(QIcon(os.path.join(base_dir, 'appicon.ico')))
         self.userdb = data.UserData()
         self.splash = Splash()
@@ -264,6 +263,8 @@ class MainWindow(QMainWindow):
         self.ui.backupAvailbleLabel.setStyleSheet(TextStyles.InformationText)
         self.ui.backupDateLabel.setStyleSheet(TextStyles.InformationText)
 
+        self.ui.helpIssueBtn.setStyleSheet(ButtonStyles.NormalButton)
+
     def close_splash(self):
         self.splash.timer.stop()
         self.splash.close()
@@ -332,6 +333,8 @@ class MainWindow(QMainWindow):
         self.ui.indexHelpBtn.clicked.connect(lambda: self.ui.stackedWidgetHelp.setCurrentWidget(self.ui.helpIndexView))
         self.ui.userHelpBtn.clicked.connect(lambda: self.ui.stackedWidgetHelp.setCurrentWidget(self.ui.helpUserView))
         self.ui.helpBackBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.homeView))
+        self.ui.helpIssueBtn.clicked.connect(lambda: webbrowser.open("https://github.com/sera619/Bookworm-Bookmanagementsystem/issues"))
+        
         # social 
         self.ui.socialGitBtn.clicked.connect(lambda: webbrowser.open("https://github.com/sera619"))
 
@@ -1024,6 +1027,11 @@ class MainWindow(QMainWindow):
         if button == QMessageBox.StandardButton.Ok:
             save_booklist(True)
             data.backup_data()
+            date = datetime.datetime.today().strftime("%d.%m.%Y")
+            time = datetime.datetime.now().strftime("%H:%M:%S")
+            backup = date + " " + time
+            APPCONFIG['lastBackup'] = backup
+            data.save_config(APPCONFIG)
             self.ui.stackedWidget.setCurrentWidget(self.ui.homeView)
             self.update_backup_display()
         elif button == QMessageBox.StandardButton.Cancel:
@@ -1062,7 +1070,7 @@ class MainWindow(QMainWindow):
         self.ui.backupAvailbleLabel.setText("")
         self.ui.backupDateLabel.setText("")
         if data.backupdata_exists():
-            self.ui.backupDateLabel.setText("")
+            self.ui.backupDateLabel.setText("Letzes Update: " + APPCONFIG['lastBackup'])
             self.ui.backupAvailbleLabel.setStyleSheet(TextStyles.InformationTextOkay)
             self.ui.backupAvailbleLabel.setText("Backup verfügbar!")
         else:
