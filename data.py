@@ -9,6 +9,8 @@ USERDATA_F = os.path.abspath(os.curdir)+'\\data\\userdata.json'
 USERKND_F = os.path.abspath(os.curdir)+'\\data\\kdnb.bin'
 BOOKLIST_F = os.path.abspath(os.curdir)+'\\data\\booklist.csv'
 DKEY_F = os.path.abspath(os.curdir)+'\\data\\mo.key'
+YML_F = os.path.abspath(os.curdir)+'\\config.yml'
+
 
 USERDATA_F_B = os.path.abspath(os.curdir)+'\\backup\\Backup-userdata.json'
 USERKND_F_B = os.path.abspath(os.curdir)+'\\backup\\Backup-kdnb.bin'
@@ -306,7 +308,7 @@ def backupdata_exists() -> bool:
 def config_app() -> dict:
     logging.info('[Data]: Lade Config-Files.')
     new_dict = dict()
-    with open('config.yml', 'r') as file:
+    with open(YML_F, 'r') as file:
         content = yaml.load(file, Loader=Loader)
         for key, value in content.items():
             new_dict[key] = value
@@ -314,6 +316,6 @@ def config_app() -> dict:
 
 def save_config(config):
     logging.info("[Data]: Speichere Config-Files.")
-    with open('config.yml', 'w') as file:
+    with open(YML_F, 'w') as file:
         yaml.dump(config, file, Dumper=Dumper)
     return
