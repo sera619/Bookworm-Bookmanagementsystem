@@ -334,7 +334,7 @@ class MainWindow(QMainWindow):
         self.ui.userHelpBtn.clicked.connect(lambda: self.ui.stackedWidgetHelp.setCurrentWidget(self.ui.helpUserView))
         self.ui.helpBackBtn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.homeView))
         self.ui.helpIssueBtn.clicked.connect(lambda: webbrowser.open("https://github.com/sera619/Bookworm-Bookmanagementsystem/issues"))
-        
+        self.ui.delBackupBtn.clicked.connect(lambda: self.remove_backup_data())
         # social 
         self.ui.socialGitBtn.clicked.connect(lambda: webbrowser.open("https://github.com/sera619"))
 
@@ -1038,6 +1038,8 @@ class MainWindow(QMainWindow):
             return
 
     def get_backup_data(self):
+        if not data.backupdata_exists():
+            return
         button = QMessageBox.warning(
             self,
             'Warnung',
@@ -1066,16 +1068,37 @@ class MainWindow(QMainWindow):
         elif button == QMessageBox.StandardButton.No:
             return
 
+    def remove_backup_data(self):
+        if not data.backupdata_exists():
+            return
+        button = QMessageBox.warning(
+            self,
+            'Achtung!',
+            'Backup löschen.\n\nDas vorhandene Backup wird unwiderruflich gelöscht!\n\nFortfahren?',
+            QMessageBox.StandardButton.Yes |
+            QMessageBox.StandardButton.No
+        )
+        if button == QMessageBox.StandardButton.Yes:
+            data.remove_backup_data()
+            APPCONFIG['lastBackup'] = None
+            data.save_config(APPCONFIG)
+            self.update_backup_display()
+            os.remove('./backup/Backup-booklist.csv')
+        elif button == QMessageBox.StandardButton.No:
+            return
+
     def update_backup_display(self):
         self.ui.backupAvailbleLabel.setText("")
-        self.ui.backupDateLabel.setText("")
         if data.backupdata_exists():
-            self.ui.backupDateLabel.setText("Letzes Update: " + APPCONFIG['lastBackup'])
+            self.ui.backupDateLabel.setStyleSheet(TextStyles.InformationTextOkay)
             self.ui.backupAvailbleLabel.setStyleSheet(TextStyles.InformationTextOkay)
+            self.ui.backupDateLabel.setText("Letzes Update: " + APPCONFIG['lastBackup'])
             self.ui.backupAvailbleLabel.setText("Backup verfügbar!")
         else:
+            self.ui.backupDateLabel.setText("")
             self.ui.backupAvailbleLabel.setStyleSheet(TextStyles.InformationText)
             self.ui.backupAvailbleLabel.setText("Kein Backup verfügbar!")
+
 
 
 # save booklist as csv file in ./data/booklist.csv
