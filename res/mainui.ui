@@ -496,7 +496,7 @@ QPushButton::Focus{
              </sizepolicy>
             </property>
             <property name="currentIndex">
-             <number>6</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="homeView">
              <property name="sizePolicy">
@@ -826,6 +826,12 @@ QPushButton::Pressed{
                         <horstretch>0</horstretch>
                         <verstretch>0</verstretch>
                        </sizepolicy>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>400</width>
+                        <height>0</height>
+                       </size>
                       </property>
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
@@ -1378,10 +1384,17 @@ QPushButton::Focus{
                            <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
                             <widget class="QLabel" name="helpHomeLabel">
                              <property name="text">
-                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Klicke im Menü auf das Thema&lt;br/&gt;bei dem du Hilfe brauchst.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Klicke im Menü auf das Thema&lt;br/&gt;bei dem du Hilfe brauchst.&lt;br/&gt;&lt;br/&gt;Solltest du generelle Probleme mit&lt;br/&gt;der Software haben, &lt;br/&gt;klicke den Support-Button unten.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                              </property>
                              <property name="alignment">
                               <set>Qt::AlignCenter</set>
+                             </property>
+                            </widget>
+                           </item>
+                           <item alignment="Qt::AlignHCenter">
+                            <widget class="QPushButton" name="helpIssueBtn">
+                             <property name="text">
+                              <string>Support</string>
                              </property>
                             </widget>
                            </item>
@@ -1607,7 +1620,35 @@ QPushButton::Pressed{
 }</string>
                              </property>
                              <property name="text">
-                              <string>Daten Wiederherstellen</string>
+                              <string>Backup wiederherstellen</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="delBackupBtn">
+                             <property name="styleSheet">
+                              <string notr="true">QPushButton{
+	border: 1px solid rgba(170, 0, 0,165);
+	padding: 2px 20px;
+	border-radius: 2%;
+	color: rgb(255, 0, 0)
+}
+
+QPushButton::Hover{
+	border: 1.4px solid rgb(255, 0, 0);
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 0, 0, 70), stop:1 rgba(65, 0, 0, 70));
+	
+}
+
+QPushButton::Pressed{
+	border: 1.4px solid;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0  rgba(65, 0, 0, 255), stop:1 rgba(255, 0, 0, 255));
+	border-color: rgb(255, 0, 0);
+	color: #FFF;
+}</string>
+                             </property>
+                             <property name="text">
+                              <string>Backup löschen</string>
                              </property>
                             </widget>
                            </item>
@@ -2125,6 +2166,13 @@ QPushButton::Pressed{
                      <number>0</number>
                     </property>
                     <item>
+                     <widget class="QPushButton" name="index_btn_add">
+                      <property name="text">
+                       <string>Neu</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
                      <widget class="QPushButton" name="avaibleBtn">
                       <property name="text">
                        <string>Entleihen</string>
@@ -2135,13 +2183,6 @@ QPushButton::Pressed{
                      <widget class="QPushButton" name="index_btn_delete">
                       <property name="text">
                        <string>Löschen</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="index_btn_add">
-                      <property name="text">
-                       <string>Neu</string>
                       </property>
                      </widget>
                     </item>
@@ -2963,13 +3004,6 @@ QPushButton::Pressed{
                               <number>0</number>
                              </property>
                              <item>
-                              <widget class="QPushButton" name="showUserBookBtn">
-                               <property name="text">
-                                <string>Bücher</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
                               <widget class="QPushButton" name="newUserBtn">
                                <property name="text">
                                 <string>Neu</string>
@@ -2980,6 +3014,13 @@ QPushButton::Pressed{
                               <widget class="QPushButton" name="deleteUserBtn">
                                <property name="text">
                                 <string>Löschen</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="showUserBookBtn">
+                               <property name="text">
+                                <string>Bücher</string>
                                </property>
                               </widget>
                              </item>

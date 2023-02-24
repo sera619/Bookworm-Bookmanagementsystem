@@ -464,6 +464,7 @@ class Ui_MainWindow(object):
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(self.lendBookFrame.sizePolicy().hasHeightForWidth())
         self.lendBookFrame.setSizePolicy(sizePolicy3)
+        self.lendBookFrame.setMinimumSize(QSize(400, 0))
         self.lendBookFrame.setFrameShape(QFrame.StyledPanel)
         self.lendBookFrame.setFrameShadow(QFrame.Raised)
         self.gridLayout_3 = QGridLayout(self.lendBookFrame)
@@ -781,6 +782,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_53.addWidget(self.helpHomeLabel, 0, Qt.AlignHCenter|Qt.AlignVCenter)
 
+        self.helpIssueBtn = QPushButton(self.frame_32)
+        self.helpIssueBtn.setObjectName(u"helpIssueBtn")
+
+        self.verticalLayout_53.addWidget(self.helpIssueBtn, 0, Qt.AlignHCenter)
+
 
         self.verticalLayout_52.addWidget(self.frame_32)
 
@@ -938,6 +944,30 @@ class Ui_MainWindow(object):
 "}")
 
         self.horizontalLayout_25.addWidget(self.loadBackupBtn)
+
+        self.delBackupBtn = QPushButton(self.frame_33)
+        self.delBackupBtn.setObjectName(u"delBackupBtn")
+        self.delBackupBtn.setStyleSheet(u"QPushButton{\n"
+"	border: 1px solid rgba(170, 0, 0,165);\n"
+"	padding: 2px 20px;\n"
+"	border-radius: 2%;\n"
+"	color: rgb(255, 0, 0)\n"
+"}\n"
+"\n"
+"QPushButton::Hover{\n"
+"	border: 1.4px solid rgb(255, 0, 0);\n"
+"	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 0, 0, 70), stop:1 rgba(65, 0, 0, 70));\n"
+"	\n"
+"}\n"
+"\n"
+"QPushButton::Pressed{\n"
+"	border: 1.4px solid;\n"
+"	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0  rgba(65, 0, 0, 255), stop:1 rgba(255, 0, 0, 255));\n"
+"	border-color: rgb(255, 0, 0);\n"
+"	color: #FFF;\n"
+"}")
+
+        self.horizontalLayout_25.addWidget(self.delBackupBtn)
 
 
         self.verticalLayout_54.addWidget(self.frame_33, 0, Qt.AlignHCenter|Qt.AlignBottom)
@@ -1226,6 +1256,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.setSpacing(10)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
         self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
+        self.index_btn_add = QPushButton(self.frame_3)
+        self.index_btn_add.setObjectName(u"index_btn_add")
+
+        self.horizontalLayout_8.addWidget(self.index_btn_add)
+
         self.avaibleBtn = QPushButton(self.frame_3)
         self.avaibleBtn.setObjectName(u"avaibleBtn")
 
@@ -1235,11 +1270,6 @@ class Ui_MainWindow(object):
         self.index_btn_delete.setObjectName(u"index_btn_delete")
 
         self.horizontalLayout_8.addWidget(self.index_btn_delete)
-
-        self.index_btn_add = QPushButton(self.frame_3)
-        self.index_btn_add.setObjectName(u"index_btn_add")
-
-        self.horizontalLayout_8.addWidget(self.index_btn_add)
 
 
         self.verticalLayout_7.addWidget(self.frame_3, 0, Qt.AlignHCenter|Qt.AlignVCenter)
@@ -1679,11 +1709,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_12 = QHBoxLayout(self.frame_10)
         self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
         self.horizontalLayout_12.setContentsMargins(0, 0, 0, 0)
-        self.showUserBookBtn = QPushButton(self.frame_10)
-        self.showUserBookBtn.setObjectName(u"showUserBookBtn")
-
-        self.horizontalLayout_12.addWidget(self.showUserBookBtn)
-
         self.newUserBtn = QPushButton(self.frame_10)
         self.newUserBtn.setObjectName(u"newUserBtn")
 
@@ -1693,6 +1718,11 @@ class Ui_MainWindow(object):
         self.deleteUserBtn.setObjectName(u"deleteUserBtn")
 
         self.horizontalLayout_12.addWidget(self.deleteUserBtn)
+
+        self.showUserBookBtn = QPushButton(self.frame_10)
+        self.showUserBookBtn.setObjectName(u"showUserBookBtn")
+
+        self.horizontalLayout_12.addWidget(self.showUserBookBtn)
 
         self.userEditBtn = QPushButton(self.frame_10)
         self.userEditBtn.setObjectName(u"userEditBtn")
@@ -2689,7 +2719,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(6)
+        self.stackedWidget.setCurrentIndex(2)
         self.lendDayBox.setCurrentIndex(0)
         self.stackedWidgetHelp.setCurrentIndex(4)
         self.exportFileInputbox.setCurrentIndex(-1)
@@ -2737,7 +2767,8 @@ class Ui_MainWindow(object):
         self.indexHelpBtn.setText(QCoreApplication.translate("MainWindow", u"Index Hilfe", None))
         self.userHelpBtn.setText(QCoreApplication.translate("MainWindow", u"Kunden Hilfe", None))
         self.importHelpBtn.setText(QCoreApplication.translate("MainWindow", u"Datenimport", None))
-        self.helpHomeLabel.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Klicke im Men\u00fc auf das Thema<br/>bei dem du Hilfe brauchst.</p></body></html>", None))
+        self.helpHomeLabel.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Klicke im Men\u00fc auf das Thema<br/>bei dem du Hilfe brauchst.<br/><br/>Solltest du generelle Probleme mit<br/>der Software haben, <br/>klicke den Support-Button unten.</p></body></html>", None))
+        self.helpIssueBtn.setText(QCoreApplication.translate("MainWindow", u"Support", None))
         self.helpCommonHeader.setText(QCoreApplication.translate("MainWindow", u"Allgemein - Hilfe", None))
         self.helpCommonLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.helpIndexHeader.setText(QCoreApplication.translate("MainWindow", u"Index - Hilfe", None))
@@ -2749,7 +2780,8 @@ class Ui_MainWindow(object):
         self.backupAvailbleLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.backupDateLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.menu_btn_backup.setText(QCoreApplication.translate("MainWindow", u"Backup erstellen", None))
-        self.loadBackupBtn.setText(QCoreApplication.translate("MainWindow", u"Daten Wiederherstellen", None))
+        self.loadBackupBtn.setText(QCoreApplication.translate("MainWindow", u"Backup wiederherstellen", None))
+        self.delBackupBtn.setText(QCoreApplication.translate("MainWindow", u"Backup l\u00f6schen", None))
         self.helpBackBtn.setText(QCoreApplication.translate("MainWindow", u"Zur\u00fcck", None))
         self.label_41.setText(QCoreApplication.translate("MainWindow", u"Benutzer Bearbeiten", None))
         self.userEditInfoLabel.setText(QCoreApplication.translate("MainWindow", u"\u00c4ndere die Daten und klicke den '\u00c4ndern'-Button.", None))
@@ -2777,9 +2809,9 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"R\u00fcckgabe", None));
         ___qtablewidgetitem5 = self.indexTable.horizontalHeaderItem(5)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Verf\u00fcgbar", None));
+        self.index_btn_add.setText(QCoreApplication.translate("MainWindow", u"Neu", None))
         self.avaibleBtn.setText(QCoreApplication.translate("MainWindow", u"Entleihen", None))
         self.index_btn_delete.setText(QCoreApplication.translate("MainWindow", u"L\u00f6schen", None))
-        self.index_btn_add.setText(QCoreApplication.translate("MainWindow", u"Neu", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Neuer Buch Eintrag", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"ISBN", None))
         self.addisbnInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Bsp: 0123456", None))
@@ -2814,9 +2846,9 @@ class Ui_MainWindow(object):
         self.label_16.setText(QCoreApplication.translate("MainWindow", u"Adresse", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"Geburtstag", None))
         self.usergbLabel.setText("")
-        self.showUserBookBtn.setText(QCoreApplication.translate("MainWindow", u"B\u00fccher", None))
         self.newUserBtn.setText(QCoreApplication.translate("MainWindow", u"Neu", None))
         self.deleteUserBtn.setText(QCoreApplication.translate("MainWindow", u"L\u00f6schen", None))
+        self.showUserBookBtn.setText(QCoreApplication.translate("MainWindow", u"B\u00fccher", None))
         self.userEditBtn.setText(QCoreApplication.translate("MainWindow", u"Bearbeiten", None))
         self.userBookHeadLabel.setText(QCoreApplication.translate("MainWindow", u"Nutzer Buchliste", None))
         self.label_28.setText(QCoreApplication.translate("MainWindow", u"Kundennummer:", None))
