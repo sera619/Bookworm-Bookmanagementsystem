@@ -1,6 +1,7 @@
 from tinydb import TinyDB, Query
 from cryptography.fernet import Fernet
-import os, shutil, logging
+import os, shutil, logging, yaml
+from yaml import Loader, Dumper
 
 base_dir = os.path.dirname(__file__)
 
@@ -299,3 +300,18 @@ def backupdata_exists() -> bool:
     if os.path.exists(USERDATA_F_B):
         return True
     return False
+
+def config_app() -> dict:
+    logging.info('[Data]: Lade Config-Files.')
+    new_dict = dict()
+    with open('config.yml', 'r') as file:
+        content = yaml.load(file, Loader=Loader)
+        for key, value in content.items():
+            new_dict[key] = value
+    return new_dict
+
+def save_config(config):
+    logging.info("[Data]: Speichere Config-Files.")
+    with open('config.yml', 'w') as file:
+        yaml.dump(config, file, Dumper=Dumper)
+    return
