@@ -83,12 +83,13 @@ class UserData:
 
     def user_add_book(self, kdn, isbn):
         new_list = []
+        User = Query()
         for user in self.db:
             if user['kndNum'] == kdn:
                 if isbn not in user['books']:
                     new_list = user['books']
                     new_list.append(isbn)
-                    self.db.update({'books': new_list} ,self.User.kndNum == kdn)
+                    self.db.update({'books': new_list} ,User.kndNum == kdn)
                     print("Buch zu User hinzugefügt")
                     logging.info(f"[Data]: User: {user['name']} hat Buch(ISBN): {isbn} ausgeliehen!")
                     break
@@ -98,12 +99,13 @@ class UserData:
 
     def user_remove_book(self, kdn, isbn):
         old_books = []
+        User = Query()
         for user in self.db:
             if user['kndNum'] == kdn:
                 if isbn in user['books']:
                     old_books = user['books']
                     old_books.remove(isbn)
-                    self.db.update({'books': old_books} ,self.User.kndNum == kdn)
+                    self.db.update({'books': old_books} ,User.kndNum == kdn)
                     print("Buch von user entfernt")
                     logging.info(f"[Data]: User: {user['name']} hat Buch(ISBN): {isbn} zurück gebracht!")
                     break
