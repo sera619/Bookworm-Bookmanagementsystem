@@ -44,7 +44,6 @@ To install the software:
 <details>
     <summary>Screenshots</summary>
     <img src="screens/screen_load.png">
-    <img src="screens/screen_load.png">
     <img src="screens/screen_mainwindow.png">
     <img src="screens/screen_bookindex.png">
     <img src="screens/screen_user.png">
