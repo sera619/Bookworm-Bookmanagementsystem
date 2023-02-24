@@ -1,7 +1,3 @@
-.markdown-here-wrapper {
-  font-family: Verdana, sans;
-}
-
 # BookWorm #
 
 A Bookmanagementsystem for librarys. This Tool provides a userfriendly GUI made with Python and PySide6. I made this software for my girlfriend, she work in a library and she need a tool to index all the books and manage them.
@@ -54,5 +50,3 @@ To install the software:
 > - ![userbooks screen](screens/userbookview.png)
 > - ![help backup](screens/backup.png)
 > - ![log files](screens/logging.png)
-
-Happy <span class="hi">Birthday</span> my friend!
