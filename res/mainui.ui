@@ -443,7 +443,7 @@ QPushButton::Focus{
           <item>
            <widget class="QPushButton" name="menu_btn_import">
             <property name="text">
-             <string>Importieren</string>
+             <string>Im-/Ex-port</string>
             </property>
            </widget>
           </item>
@@ -1343,7 +1343,7 @@ QPushButton::Focus{
                           <item>
                            <widget class="QPushButton" name="importHelpBtn">
                             <property name="text">
-                             <string>Datenimport</string>
+                             <string>Backup</string>
                             </property>
                            </widget>
                           </item>
@@ -1504,7 +1504,7 @@ QPushButton::Focus{
                         <item>
                          <widget class="QLabel" name="helpImportHeader">
                           <property name="text">
-                           <string>Datenimport - Hilfe</string>
+                           <string>Backup - Hilfe</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignCenter</set>
