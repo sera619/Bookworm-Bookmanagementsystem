@@ -207,8 +207,6 @@ class MainWindow(QMainWindow):
         self.activeworkder = worker
         self.threadpool.start(worker)
 
-
-
     def apply_styles(self):
         self.ui.tableAvaible.horizontalHeader().setStretchLastSection(True)
         self.ui.tableAvaible.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
@@ -273,6 +271,9 @@ class MainWindow(QMainWindow):
     def setup_buttons(self):
         self.ui.lendDayBox.currentTextChanged.connect(lambda: self.set_lenddate_label())
         self.ui.userTable.itemSelectionChanged.connect(lambda: self.show_user_information())
+        self.ui.indexSearchInput.textChanged.connect(self.search_book)
+        self.ui.userSearchInput.textChanged.connect(self.search_user)
+
         self.splash.splash.cancelBtn.clicked.connect(lambda: self.close_splash())
         self.ui.x_button.clicked.connect(lambda: self.close())
         self.ui.min_window_btn.clicked.connect(lambda: self.showMinimized())
@@ -750,6 +751,25 @@ class MainWindow(QMainWindow):
                     if button == QMessageBox.StandardButton.Ok:
                         self.ui.stackedWidget.setCurrentWidget(self.ui.avaibleView)
 
+    def search_book(self, s):
+        self.ui.indexTable.setCurrentItem(None)
+        if not s:
+            return
+        matching_items = self.ui.indexTable.findItems(s, Qt.MatchContains)
+        if matching_items:
+            item = matching_items[0]
+            self.ui.indexTable.setCurrentItem(item)
+    
+    def search_user(self, s):
+        self.ui.userTable.setCurrentItem(None)
+        if not s:
+            return
+        match_items = self.ui.userTable.findItems(s, Qt.MatchContains)
+        if match_items:
+            item = match_items[0]
+            self.ui.userTable.setCurrentItem(item)
+        
+
     def give_book(self):
         row = self.ui.indexTable.selectedIndexes()
         kdn = self.ui.lendKdnInput.text()
@@ -1098,11 +1118,12 @@ def load_booklist() -> list:
     return new_list
 
 def main(app: QApplication, window: MainWindow):
-    window.splash.show() 
-    window.start_splash()
+    
+    #window.splash.show() 
+    #window.start_splash()
     #window.splash.change_animation()
 
-    #window.show()
+    window.show()
     sys.exit(app.exec())
 
 global booklist
