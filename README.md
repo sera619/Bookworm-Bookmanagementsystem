@@ -4,7 +4,7 @@ A Bookmanagementsystem for librarys. This Tool provides a userfriendly GUI made 
 
 ## Features ##
 
-==Please notice the software is currently only available in german. A english version will follow.==
+Please notice the software is currently only available in german. A english version will follow.
 
 This features are currently available:
 
@@ -41,12 +41,16 @@ To install the software:
 
 ## Screenshots ##
 
-> - ![load screen](screens/screen_load.png)
-> - ![main screen](screens/screen_mainwindow.png)
-> - ![book index](screens/screen_bookindex.png)
-> - ![user screen](screens/screen_user.png)
-> - ![import screen](screens/screen_import.png)
-> - ![user edit](screens/usereditview.png)
-> - ![userbooks screen](screens/userbookview.png)
-> - ![help backup](screens/backup.png)
-> - ![log files](screens/logging.png)
+<details>
+    <summary>Screenshots</summary>
+    <img src="screens/screen_load.png">
+    <img src="screens/screen_load.png">
+    <img src="screens/screen_mainwindow.png">
+    <img src="screens/screen_bookindex.png">
+    <img src="screens/screen_user.png">
+    <img src="screens/screen_import.png">
+    <img src="screens/usereditview.png">
+    <img src="screens/userbookview.png">
+    <img src="screens/backup.png">
+    <img src="screens/logging.png">
+</details>
