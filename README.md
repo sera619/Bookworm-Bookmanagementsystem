@@ -4,6 +4,8 @@ A Bookmanagementsystem for librarys. This Tool provides a userfriendly GUI made 
 
 ## Features ##
 
+Please notice the software is currently only available in german. A english version will follow.
+
 This features are currently available:
 
 > - Book-Database, save books with followed informations:
