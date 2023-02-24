@@ -1157,9 +1157,16 @@ class Ui_MainWindow(object):
         self.frame_36.setFrameShape(QFrame.StyledPanel)
         self.frame_36.setFrameShadow(QFrame.Raised)
         self.verticalLayout_34 = QVBoxLayout(self.frame_36)
-        self.verticalLayout_34.setSpacing(0)
+        self.verticalLayout_34.setSpacing(8)
         self.verticalLayout_34.setObjectName(u"verticalLayout_34")
         self.verticalLayout_34.setContentsMargins(0, 9, 0, 9)
+        self.indexSearchInput = QLineEdit(self.frame_36)
+        self.indexSearchInput.setObjectName(u"indexSearchInput")
+        self.indexSearchInput.setMinimumSize(QSize(250, 0))
+        self.indexSearchInput.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_34.addWidget(self.indexSearchInput, 0, Qt.AlignRight)
+
         self.indexTable = QTableWidget(self.frame_36)
         if (self.indexTable.columnCount() < 6):
             self.indexTable.setColumnCount(6)
@@ -1284,7 +1291,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_35.setContentsMargins(0, 0, 0, 0)
         self.addBookFrame = QFrame(self.frame_37)
         self.addBookFrame.setObjectName(u"addBookFrame")
-        self.addBookFrame.setMinimumSize(QSize(0, 0))
+        self.addBookFrame.setMinimumSize(QSize(350, 0))
         self.addBookFrame.setFrameShape(QFrame.StyledPanel)
         self.addBookFrame.setFrameShadow(QFrame.Raised)
         self.formLayout = QFormLayout(self.addBookFrame)
@@ -1299,7 +1306,7 @@ class Ui_MainWindow(object):
 "	font: 12px \"Ethnocentric\";\n"
 "	color: rgb(170, 0, 0);\n"
 "}")
-        self.label_3.setAlignment(Qt.AlignCenter)
+        self.label_3.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
 
         self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label_3)
 
@@ -1315,7 +1322,7 @@ class Ui_MainWindow(object):
 "	font: 12px \"Ethnocentric\";\n"
 "	color: rgb(170, 0, 0);\n"
 "}")
-        self.label_4.setAlignment(Qt.AlignCenter)
+        self.label_4.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
 
         self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_4)
 
@@ -1331,7 +1338,7 @@ class Ui_MainWindow(object):
 "	font: 12px \"Ethnocentric\";\n"
 "	color: rgb(170, 0, 0);\n"
 "}")
-        self.label_5.setAlignment(Qt.AlignCenter)
+        self.label_5.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
 
         self.formLayout.setWidget(2, QFormLayout.LabelRole, self.label_5)
 
@@ -1347,7 +1354,7 @@ class Ui_MainWindow(object):
 "	font: 12px \"Ethnocentric\";\n"
 "	color: rgb(170, 0, 0);\n"
 "}")
-        self.label_6.setAlignment(Qt.AlignCenter)
+        self.label_6.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
 
         self.formLayout.setWidget(3, QFormLayout.LabelRole, self.label_6)
 
@@ -1363,7 +1370,7 @@ class Ui_MainWindow(object):
 "	font: 12px \"Ethnocentric\";\n"
 "	color: rgb(170, 0, 0);\n"
 "}")
-        self.label_7.setAlignment(Qt.AlignCenter)
+        self.label_7.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
 
         self.formLayout.setWidget(4, QFormLayout.LabelRole, self.label_7)
 
@@ -1426,7 +1433,7 @@ class Ui_MainWindow(object):
         self.userlistView = QWidget()
         self.userlistView.setObjectName(u"userlistView")
         self.verticalLayout_13 = QVBoxLayout(self.userlistView)
-        self.verticalLayout_13.setSpacing(0)
+        self.verticalLayout_13.setSpacing(4)
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
         self.frame_38 = QFrame(self.userlistView)
         self.frame_38.setObjectName(u"frame_38")
@@ -1441,7 +1448,7 @@ class Ui_MainWindow(object):
         self.frame_39.setFrameShape(QFrame.StyledPanel)
         self.frame_39.setFrameShadow(QFrame.Raised)
         self.verticalLayout_37 = QVBoxLayout(self.frame_39)
-        self.verticalLayout_37.setSpacing(0)
+        self.verticalLayout_37.setSpacing(3)
         self.verticalLayout_37.setObjectName(u"verticalLayout_37")
         self.verticalLayout_37.setContentsMargins(0, 0, 0, 0)
         self.label_8 = QLabel(self.frame_39)
@@ -1465,6 +1472,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_37.addWidget(self.line)
 
+        self.userSearchInput = QLineEdit(self.frame_39)
+        self.userSearchInput.setObjectName(u"userSearchInput")
+        self.userSearchInput.setMinimumSize(QSize(300, 0))
+
+        self.verticalLayout_37.addWidget(self.userSearchInput, 0, Qt.AlignLeft)
+
         self.frame_8 = QFrame(self.frame_39)
         self.frame_8.setObjectName(u"frame_8")
         self.frame_8.setFrameShape(QFrame.StyledPanel)
@@ -1472,7 +1485,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_11 = QHBoxLayout(self.frame_8)
         self.horizontalLayout_11.setSpacing(0)
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
-        self.horizontalLayout_11.setContentsMargins(0, 9, 0, 0)
+        self.horizontalLayout_11.setContentsMargins(0, 9, 0, 9)
         self.userTable = QTableWidget(self.frame_8)
         if (self.userTable.columnCount() < 2):
             self.userTable.setColumnCount(2)
@@ -2352,7 +2365,7 @@ class Ui_MainWindow(object):
         self.exportFileInputbox.addItem("")
         self.exportFileInputbox.addItem("")
         self.exportFileInputbox.setObjectName(u"exportFileInputbox")
-        self.exportFileInputbox.setMinimumSize(QSize(150, 0))
+        self.exportFileInputbox.setMinimumSize(QSize(200, 0))
         self.exportFileInputbox.setMaximumSize(QSize(150, 16777215))
         self.exportFileInputbox.setInsertPolicy(QComboBox.InsertAtBottom)
 
@@ -2363,7 +2376,7 @@ class Ui_MainWindow(object):
         self.exportFileTypeBox.addItem("")
         self.exportFileTypeBox.addItem("")
         self.exportFileTypeBox.setObjectName(u"exportFileTypeBox")
-        self.exportFileTypeBox.setMinimumSize(QSize(150, 0))
+        self.exportFileTypeBox.setMinimumSize(QSize(200, 0))
         self.exportFileTypeBox.setLayoutDirection(Qt.LeftToRight)
 
         self.verticalLayout_47.addWidget(self.exportFileTypeBox, 0, Qt.AlignHCenter)
@@ -2676,7 +2689,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(6)
         self.lendDayBox.setCurrentIndex(0)
         self.stackedWidgetHelp.setCurrentIndex(4)
         self.exportFileInputbox.setCurrentIndex(-1)
@@ -2750,6 +2763,8 @@ class Ui_MainWindow(object):
         self.userEditDelBtn.setText(QCoreApplication.translate("MainWindow", u"L\u00f6schen", None))
         self.userEditBackBtn.setText(QCoreApplication.translate("MainWindow", u"Abbrechen", None))
         self.indexHeaderLabel.setText(QCoreApplication.translate("MainWindow", u"B\u00fccherIndex", None))
+        self.indexSearchInput.setText("")
+        self.indexSearchInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Suchen nach ISBN, Titel, Author ...", None))
         ___qtablewidgetitem = self.indexTable.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"ISBN", None));
         ___qtablewidgetitem1 = self.indexTable.horizontalHeaderItem(1)
@@ -2779,6 +2794,7 @@ class Ui_MainWindow(object):
         self.addBookBtn.setText(QCoreApplication.translate("MainWindow", u"Erstellen", None))
         self.clearAddInputBtn.setText(QCoreApplication.translate("MainWindow", u"Clear", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"Kundenindex", None))
+        self.userSearchInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Suchen Name, Knd-Nummer...", None))
         ___qtablewidgetitem6 = self.userTable.horizontalHeaderItem(0)
         ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Knd-Nummer", None));
         ___qtablewidgetitem7 = self.userTable.horizontalHeaderItem(1)
